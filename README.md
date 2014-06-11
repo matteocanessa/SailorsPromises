@@ -1,5 +1,4 @@
 #SailorsPromises
-----------------
 
 SailorsPromises is a small, free and open-source library for the .NET Framework to make asynchronous calls more friendly.
 It is a promise/deferred implementation inspired by [AngularJS $q](https://docs.angularjs.org/api/ng/service/$q) and [Promises/A+](http://promises-aplus.github.io/promises-spec/)
