@@ -33,23 +33,28 @@ namespace SailorsPromises
     public interface IPromise
     {
         /// <summary>
-        /// Result of a fulfilled promise
+        /// Result of a fulfilled promise.
         /// </summary>
         object Value { get; }
 
                 
         /// <summary>
-        /// Exception for a rejected promise
+        /// Exception for a rejected promise.
         /// </summary>
         Exception Reason { get; }
 
         /// <summary>
-        /// Specify the action to be executed if the promise is fulfilled
+        /// Specify the action to be executed if the promise is fulfilled.
         /// </summary>
-        /// <param name="onFulfilled">The action to be executed if the promise is fulfilled</param>
-        /// <returns>A new instance of a promise chained to this one</returns>
+        /// <param name="onFulfilled">The action to be executed if the promise is fulfilled.</param>
+        /// <returns>A new instance of a promise chained to this one.</returns>
         IPromise Then(Action<object> onFulfilled);
 
+        /// <summary>
+        /// Specify the action to b executed if the promise is rejected due to an exception.
+        /// </summary>
+        /// <param name="onRejected">The action to b executed if the promise is rejected due to an exception.</param>
+        /// <returns>A new instance of a promise chained to this one.</returns>
         IPromise OnError(Action<Exception> onRejected);
         
         IPromise Finally(Action onFinally);
