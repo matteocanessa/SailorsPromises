@@ -26,39 +26,39 @@ using SailorsPromises;
 
 namespace SailorsPromisesTestApp
 {
-	/// <summary>
-	/// Description of MySuperService.
-	/// </summary>
-	public class MySuperService
-	{
-		public MySuperService()
-		{
-		}
-		
-		public IPromise Run()
-		{
-			var sailor = new Sailor();
-			
-			new Thread(
-			()
-			=>
-			{
-					try {
-						while (true) {
-							//My long execution...	
+    /// <summary>
+    /// Description of MySuperService.
+    /// </summary>
+    public class MySuperService
+    {
+        public MySuperService()
+        {
+        }
+        
+        public IPromise Run()
+        {
+            var sailor = new Sailor();
+            
+            new Thread(
+            ()
+            =>
+            {
+                    try {
+                        while (true) {
+							//My long execution...    
 							Thread.Sleep(1000);
 							sailor.Notify("Something happened");
-						}
-					} catch (Exception exception) {
-						
-						sailor.Reject(exception);
-					} finally {
-						sailor.Finally();
-					}
-			}
-			).Start();
-			
-			return sailor.Promise;
-		}
-	}
+                        }
+                    } catch (Exception exception) {
+                        
+                        sailor.Reject(exception);
+                    } finally {
+                        sailor.Finally();
+                    }
+            }
+            ).Start();
+            
+            return sailor.Promise;
+        }
+    }
 }

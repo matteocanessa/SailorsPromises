@@ -29,44 +29,44 @@ using SailorsPromises;
 
 namespace SailorsPromisesTestApp
 {
-	/// <summary>
-	/// Description of MainForm.
-	/// </summary>
-	public partial class MainForm : Form
-	{
-		public MainForm()
-		{
-			//
-			// The InitializeComponent() call is required for Windows Forms designer support.
-			//
-			InitializeComponent();
-			
-			//
-			// TODO: Add constructor code after the InitializeComponent() call.
-			//
-		}
-		
-		private void button1_Click(object sender, EventArgs e)
-		{
-			new Sailor()
-				.When(() => { /*doing some stuff...*/ })
-				.Then((obj) => {/*if When completes, here we are...*/})
-				.OnError((exc) => {/*if exceptions are raised, here we can catch them...*/});
-		}
+    /// <summary>
+    /// Description of MainForm.
+    /// </summary>
+    public partial class MainForm : Form
+    {
+        public MainForm()
+        {
+            //
+            // The InitializeComponent() call is required for Windows Forms designer support.
+            //
+            InitializeComponent();
+            
+            //
+            // TODO: Add constructor code after the InitializeComponent() call.
+            //
+        }
+        
+        private void button1_Click(object sender, EventArgs e)
+        {
+            new Sailor()
+                .When(() => { /*doing some stuff...*/ })
+                .Then((obj) => {/*if When completes, here we are...*/})
+                .OnError((exc) => {/*if exceptions are raised, here we can catch them...*/});
+        }
 
-		private void button3_Click(object sender, EventArgs e)
-		{
-			var d = new Sailor();
+        private void button3_Click(object sender, EventArgs e)
+        {
+            var d = new Sailor();
 
-			d.When(
-				()
-				=>
-				{
-					Thread.Sleep(5000);
-				}
-				)
-				.Then((value) => button3.Text = "Hoary!")
-				.OnError((exc) => MessageBox.Show(exc.ToString()));
-		}
-	}
+            d.When(
+                ()
+                =>
+                {
+                    Thread.Sleep(5000);
+                }
+                )
+                .Then((value) => button3.Text = "Hoary!")
+                .OnError((exc) => MessageBox.Show(exc.ToString()));
+        }
+    }
 }

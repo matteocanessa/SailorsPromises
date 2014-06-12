@@ -1,98 +1,104 @@
-﻿//The MIT License (MIT)
+﻿// <copyright file="Sailor.cs" company="https://github.com/matteocanessa/SailorsPromises">
+//     Copyright (c) 2014 Matteo Canessa (sailorspromises@gmail.com)
+// </copyright>
+// <summary>Deferred object implementation</summary>
 //
-//Copyright (c) 2014 Matteo Canessa (sailorspromises@gmail.com)
+// The MIT License (MIT)
 //
-//Permission is hereby granted, free of charge, to any person obtaining a copy
-//of this software and associated documentation files (the "Software"), to deal
-//in the Software without restriction, including without limitation the rights
-//to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-//copies of the Software, and to permit persons to whom the Software is
-//furnished to do so, subject to the following conditions:
+// Permission is hereby granted, free of charge, to any person obtaining a copy
+// of this software and associated documentation files (the "Software"), to deal
+// in the Software without restriction, including without limitation the rights
+// to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+// copies of the Software, and to permit persons to whom the Software is
+// furnished to do so, subject to the following conditions:
 //
-//The above copyright notice and this permission notice shall be included in
-//all copies or substantial portions of the Software.
+// The above copyright notice and this permission notice shall be included in
+// all copies or substantial portions of the Software.
 //
-//THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-//IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-//FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-//AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-//LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-//OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
-//THE SOFTWARE.
-
-using System;
-using System.Diagnostics.CodeAnalysis;
-using System.Threading;
+// THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+// IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+// FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+// AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+// LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+// OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+// THE SOFTWARE.
 
 namespace SailorsPromises
 {
-	/// <summary>
-	/// Description of Sailor.
-	/// </summary>
-	public class Sailor : ISailor
-	{
-		Promise promise;
-		public IPromise Promise { get { return promise; } }
+    using System;
+    using System.Diagnostics.CodeAnalysis;
+    using System.Threading;
 
-		public Sailor() : this (new Promise())
-		{
-		}
+    /// <summary>
+    /// Description of Sailor.
+    /// </summary>
+    public class Sailor : ISailor
+    {
+        private Promise promise;
 
-		internal Sailor(Promise promise)
-		{
-			this.promise = promise;
-			SynchronizationContext synchronizationContext = SynchronizationContext.Current;
+        public Sailor() : this(new Promise())
+        {
+        }
 
-			if (synchronizationContext != null)
-			{
-				promise.SynchronizationContext = synchronizationContext;
-			}
-		}
+        internal Sailor(Promise promise)
+        {
+            this.promise = promise;
+            SynchronizationContext synchronizationContext = SynchronizationContext.Current;
 
-		public void Resolve(object value)
-		{
-			this.promise.Fulfill(value);
-		}
+            if (synchronizationContext != null)
+            {
+                promise.SynchronizationContext = synchronizationContext;
+            }
+        }
+        
+        public IPromise Promise
+        {
+            get { return this.promise; }
+        }
 
-		public void Reject(Exception exception)
-		{
-			this.promise.Reject(exception);
-		}
+        public void Resolve(object value)
+        {
+            this.promise.Fulfill(value);
+        }
 
-		public void Finally()
-		{
-			this.promise.Finally();
-		}
+        public void Reject(Exception exception)
+        {
+            this.promise.Reject(exception);
+        }
 
-		public void Notify(object value)
-		{
-			this.promise.Notify(value);
-		}
+        public void Finally()
+        {
+            this.promise.Finally();
+        }
 
-		[SuppressMessage("Microsoft.Design", "CA1031")]
-		public IPromise When(Action action)
-		{
-			ThreadPool.QueueUserWorkItem(
-				(obj)
-				=>
-				{
-					try
-					{
-						action();
-						Resolve(null);
-					}
-					catch (Exception exc)
-					{
-						Reject(exc);
-					}
-					finally
-					{
-						Finally();
-					}
-				}
-				);
+        public void Notify(object value)
+        {
+            this.promise.Notify(value);
+        }
 
-			return Promise;
-		}
-	}
+        [SuppressMessage("Microsoft.Design", "CA1031", Justification = "I need the exception to be generic to catch all types of exceptions")]
+        public IPromise When(Action action)
+        {
+            ThreadPool.QueueUserWorkItem(
+                (obj)
+                =>
+                {
+                    try
+                    {
+                        action();
+                        Resolve(null);
+                    }
+                    catch (Exception exc)
+                    {
+                        Reject(exc);
+                    }
+                    finally
+                    {
+                        Finally();
+                    }
+                });
+
+            return this.Promise;
+        }
+    }
 }
