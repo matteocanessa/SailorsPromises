@@ -1,20 +1,21 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2012
-# SharpDevelop 5.0
+# SharpDevelop 4.4
 VisualStudioVersion = 12.0.20827.3
 MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Misc", "Misc", "{09D55C7B-66F0-44A8-BEB9-319C7938721F}"
+	ProjectSection(SolutionItems) = preProject
+		README.md = README.md
+		License.txt = License.txt
+		.gitignore = .gitignore
+	EndProjectSection
+EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SailorsPromises", "SailorsPromises\SailorsPromises.csproj", "{C805B63A-F2F3-4B7F-9ED1-8F19083820E1}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SailorsPromisesTests", "SailorsPromisesTests\SailorsPromisesTests.csproj", "{C3169003-F2D4-43D6-9204-F4D407B00C56}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SailorsPromisesTestApp", "SailorsPromisesTestApp\SailorsPromisesTestApp.csproj", "{7F17C848-C221-4EA7-96C3-D644DB2378C2}"
-EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Misc", "Misc", "{09D55C7B-66F0-44A8-BEB9-319C7938721F}"
-	ProjectSection(SolutionItems) = preProject
-		README.md = README.md
-		License.txt = License.txt
-	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
