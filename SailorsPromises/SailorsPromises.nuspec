@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<package >
+  <metadata>
+    <id>$id$</id>
+    <version>$version$</version>
+    <title>SailorsPromises</title>
+    <authors>Matteo Canessa (sailorspromises@gmail.com)</authors>
+    <owners>Matteo Canessa</owners>
+    <licenseUrl>http://opensource.org/licenses/MIT</licenseUrl>
+    <projectUrl>https://github.com/matteocanessa/SailorsPromises</projectUrl>
+    <!--<iconUrl>http://ICON_URL_HERE_OR_DELETE_THIS_LINE</iconUrl>-->
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>$description$</description>
+    <releaseNotes>https://github.com/matteocanessa/SailorsPromises</releaseNotes>
+    <copyright>Copyright 2014</copyright>
+    <tags>Async .Net Promises/A+</tags>
+  </metadata>
+</package>

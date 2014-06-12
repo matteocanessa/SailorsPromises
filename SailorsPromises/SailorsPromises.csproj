@@ -62,6 +62,7 @@
     <Compile Include="Sailor.cs" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="SailorsPromises.nuspec" />
     <None Include="SailorsPromises.snk" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
