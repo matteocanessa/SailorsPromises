@@ -1,6 +1,6 @@
 ﻿//The MIT License (MIT)
 //
-//Copyright (c) 2014 Matteo Canessa (matcanessa@gmail.com)
+//Copyright (c) 2014 Matteo Canessa (sailorspromises@gmail.com)
 //
 //Permission is hereby granted, free of charge, to any person obtaining a copy
 //of this software and associated documentation files (the "Software"), to deal
@@ -29,11 +29,8 @@ using System.Runtime.InteropServices;
 
 #endregion
 
-// General Information about an assembly is controlled through the following 
-// set of attributes. Change these attribute values to modify the information
-// associated with an assembly.
 [assembly: AssemblyTitle("SailorsPromises")]
-[assembly: AssemblyDescription("")]
+[assembly: AssemblyDescription("A free and open-source library for the .NET Framework to make asynchronous calls more friendly")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
 [assembly: AssemblyProduct("SailorsPromises")]
