@@ -33,14 +33,17 @@ namespace SailorsPromises
     public interface IPromise
     {
         /// <summary>
-        /// Result of a fulfilled promise.
+        /// Gets the result of a fulfilled promise.
         /// </summary>
+        /// <value>The Value property returns the value of a fulfilled promise.</value>
+        /// <exception cref="System.InvalidOperationException">If the promise is not in the fulfilled state.</exception>
         object Value { get; }
 
-                
         /// <summary>
-        /// Exception for a rejected promise.
+        /// Gets the exception for a rejected promise.
         /// </summary>
+        /// <value>The Reason property returns the exception happened for a rejected promise.</value>
+        /// <exception cref="System.InvalidOperationException">If the promise is not in the fulfilled state.</exception>
         Exception Reason { get; }
 
         /// <summary>
@@ -51,14 +54,24 @@ namespace SailorsPromises
         IPromise Then(Action<object> onFulfilled);
 
         /// <summary>
-        /// Specify the action to b executed if the promise is rejected due to an exception.
+        /// Specify the action to be executed if the promise is rejected due to an exception.
         /// </summary>
-        /// <param name="onRejected">The action to b executed if the promise is rejected due to an exception.</param>
+        /// <param name="onRejected">The action to be executed if the promise is rejected due to an exception.</param>
         /// <returns>A new instance of a promise chained to this one.</returns>
         IPromise OnError(Action<Exception> onRejected);
-        
+
+        /// <summary>
+        /// Specify the action to be executed at the end of an execution, both fulfilled and rejected.
+        /// </summary>
+        /// <param name="onFinally">The action to be executed at the end of an execution.</param>
+        /// <returns>A new instance of a promise chained to this one.</returns>
         IPromise Finally(Action onFinally);
         
+        /// <summary>
+        /// Specify the action to be executed to notify events.
+        /// </summary>
+        /// <param name="onNotify">The action to be executed to notify something happened.</param>
+        /// <returns>A new instance of a promise chained to this one.</returns>
         IPromise Notify(Action<object> onNotify);
     }
 }
