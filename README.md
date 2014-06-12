@@ -20,7 +20,8 @@ Then actions can be chained:
 				.Then((obj) => {/*if When completes, here we are...*/})
 				.Then((obj) => {/*if the first Then completes, here we are...*/})
 				.Then((obj) => {/*if the second Then completes, here we are...*/})
-				.OnError((exc) => {/*if exceptions are raised by any of the actions above, here we can catch them all...*/});
+				.OnError((exc) => {/*if exceptions are raised by any of the actions
+									above, here we can catch them all...*/});
 
 the asynchronous execution takes place in order: the first `Then ` action, the second one and so on. If an exception is thrown by any of the actions the n the`OnError` method is called and the execution chain is stopped.
 
