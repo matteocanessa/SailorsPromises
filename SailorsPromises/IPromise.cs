@@ -28,14 +28,26 @@ namespace SailorsPromises
     using System;
 
     /// <summary>
-    /// Description of IPromise.
+    /// Promise interface.
     /// </summary>
     public interface IPromise
     {
+        /// <summary>
+        /// Result of a fulfilled promise
+        /// </summary>
         object Value { get; }
-        
+
+                
+        /// <summary>
+        /// Exception for a rejected promise
+        /// </summary>
         Exception Reason { get; }
 
+        /// <summary>
+        /// Specify the action to be executed if the promise is fulfilled
+        /// </summary>
+        /// <param name="onFulfilled">The action to be executed if the promise is fulfilled</param>
+        /// <returns>A new instance of a promise chained to this one</returns>
         IPromise Then(Action<object> onFulfilled);
 
         IPromise OnError(Action<Exception> onRejected);
