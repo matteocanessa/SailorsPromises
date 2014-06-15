@@ -34,9 +34,15 @@ using System.Runtime.InteropServices;
 
 [assembly: AssemblyTitle("SailorsPromises")]
 [assembly: AssemblyDescription("A free and open-source library for the .NET Framework to make asynchronous calls more friendly")]
+
+#if DEBUG
+[assembly: AssemblyProduct("SailorsPromises - Debug version")]
+#else
+[assembly: AssemblyProduct("SailorsPromises")]
+#endif
+
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("SailorsPromises")]
 [assembly: AssemblyCopyright("Copyright 2014")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]

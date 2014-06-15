@@ -13,6 +13,6 @@
     <description>$description$</description>
     <releaseNotes>https://github.com/matteocanessa/SailorsPromises</releaseNotes>
     <copyright>Copyright 2014</copyright>
-    <tags>Async .Net Promises/A+</tags>
+    <tags>Async .Net Promises/A+ promises promise async-programming asynchronous callbacks C# Vb.Net</tags>
   </metadata>
 </package>
