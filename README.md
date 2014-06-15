@@ -76,6 +76,9 @@ The same happens for all other actions (`OnError`, `Finally` and `Notification`)
 							//My long execution...	
 							Thread.Sleep(1000);
 							sailor.Notify("Something happened");
+							Thread.Sleep(1000);
+							object result = null;
+							sailor.Resolve(result);
 						}
 					} catch (Exception exception) {
 						
