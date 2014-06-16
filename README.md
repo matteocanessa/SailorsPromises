@@ -1,5 +1,4 @@
-[![Stories in Ready](https://badge.waffle.io/matteocanessa/sailorspromises.png?label=ready&title=Ready)](https://waffle.io/matteocanessa/sailorspromises)
-#SailorsPromises
+#SailorsPromises        [![Stories in Ready](https://badge.waffle.io/matteocanessa/sailorspromises.png?label=ready&title=Ready)](https://waffle.io/matteocanessa/sailorspromises)
 
 SailorsPromises is a small, free and open-source library for the .NET Framework to make asynchronous calls more friendly.
 It is a promise/deferred implementation inspired by [AngularJS $q](https://docs.angularjs.org/api/ng/service/$q) and [Promises/A+](http://promises-aplus.github.io/promises-spec/)
@@ -49,6 +48,7 @@ The `InvokeRequired` and `Invoke` management typical of a multithreaded Windows 
 			Thread.Sleep(5000);
 		}
 		)
+		/*You can update controls state with no worries about cross thread operations*/
 		.Then((value) => label.Text = "Hello!")
 		.OnError((exc) => MessageBox.Show(exc.ToString()));
 
