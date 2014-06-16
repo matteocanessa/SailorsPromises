@@ -6,12 +6,12 @@
     <title>SailorsPromises</title>
     <authors>Matteo Canessa (sailorspromises@gmail.com)</authors>
     <owners>Matteo Canessa</owners>
-    <licenseUrl>http://opensource.org/licenses/MIT</licenseUrl>
+    <licenseUrl>https://github.com/matteocanessa/SailorsPromises/wiki/License</licenseUrl>
     <projectUrl>https://github.com/matteocanessa/SailorsPromises</projectUrl>
     <!--<iconUrl>http://ICON_URL_HERE_OR_DELETE_THIS_LINE</iconUrl>-->
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <description>$description$</description>
-    <releaseNotes>https://github.com/matteocanessa/SailorsPromises</releaseNotes>
+    <releaseNotes>https://github.com/matteocanessa/SailorsPromises/wiki/Release-Notes</releaseNotes>
     <copyright>Copyright 2014</copyright>
     <tags>Async .Net Promises/A+ promises promise async-programming asynchronous callbacks C# Vb.Net</tags>
   </metadata>

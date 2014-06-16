@@ -23,7 +23,7 @@ Then actions can be chained:
 				.OnError((exc) => {/*if exceptions are raised by any of the actions
 									above, here we can catch them all...*/});
 
-the asynchronous execution takes place in order: the first `Then ` action, the second one and so on. If an exception is thrown by any of the actions the n the`OnError` method is called and the execution chain is stopped.
+the asynchronous execution takes place in order: the first `Then ` action, the second one and so on. If an exception is thrown by any of the actions then the`OnError` method is called and the execution chain is stopped.
 
 A `Finally` method is always called at the end of the execution chain both when the execution ends without errors and when there are errors (it works exaclty like the C# `finally` keyword).
 
