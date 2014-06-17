@@ -1,3 +1,8 @@
+![SailorsPromises logo](https://dl.dropboxusercontent.com/u/1215113/SailorsPromises.png)
+
+----------
+
+
 #SailorsPromises        [![Stories in Ready](https://badge.waffle.io/matteocanessa/sailorspromises.png?label=ready&title=Ready)](https://waffle.io/matteocanessa/sailorspromises)
 
 SailorsPromises is a small, free and open-source library for the .NET Framework to make asynchronous calls more friendly.
