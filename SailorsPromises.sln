@@ -9,6 +9,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Misc", "Misc", "{09D55C7B-6
 		README.md = README.md
 		License.txt = License.txt
 		.gitignore = .gitignore
+		SailorsPromises_150x126.png = SailorsPromises_150x126.png
 	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SailorsPromises", "SailorsPromises\SailorsPromises.csproj", "{C805B63A-F2F3-4B7F-9ED1-8F19083820E1}"
