@@ -1,4 +1,5 @@
-#SailorsPromises        ![SailorsPromises logo](https://raw.githubusercontent.com/matteocanessa/SailorsPromises/master/SailorsPromises.png)        [![Stories in Ready](https://badge.waffle.io/matteocanessa/sailorspromises.png?label=ready&title=Ready)](https://waffle.io/matteocanessa/sailorspromises)
+#SailorsPromises        ![SailorsPromises logo](https://raw.githubusercontent.com/matteocanessa/SailorsPromises/master/SailorsPromises.png)
+[![Stories in Ready](https://badge.waffle.io/matteocanessa/sailorspromises.png?label=ready&title=Ready)](https://waffle.io/matteocanessa/sailorspromises)
 
 SailorsPromises is a small, free and open-source library for the .NET Framework to make asynchronous calls more friendly.
 It is a promise/deferred implementation inspired by [AngularJS $q](https://docs.angularjs.org/api/ng/service/$q) and [Promises/A+](http://promises-aplus.github.io/promises-spec/).
