@@ -7,8 +7,8 @@
     <authors>Matteo Canessa (sailorspromises@gmail.com)</authors>
     <owners>Matteo Canessa</owners>
     <licenseUrl>https://github.com/matteocanessa/SailorsPromises/wiki/License</licenseUrl>
-    <projectUrl>https://github.com/matteocanessa/SailorsPromises</projectUrl>
-    <!--<iconUrl>http://ICON_URL_HERE_OR_DELETE_THIS_LINE</iconUrl>-->
+    <projectUrl>https://github.com/matteocanessa/SailorsPromises/wiki</projectUrl>
+    <iconUrl>https://raw.githubusercontent.com/matteocanessa/SailorsPromises/master/SailorsPromises.png</iconUrl>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <description>$description$</description>
     <releaseNotes>https://github.com/matteocanessa/SailorsPromises/wiki/Release-Notes</releaseNotes>

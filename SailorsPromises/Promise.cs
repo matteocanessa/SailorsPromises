@@ -190,7 +190,7 @@ namespace SailorsPromises
             }
         }
         
-                [SuppressMessage("Microsoft.Design", "CA1031", Justification = "I need the exception to be generic to catch all types of exceptions")]
+        [SuppressMessage("Microsoft.Design", "CA1031", Justification = "I need the exception to be generic to catch all types of exceptions")]
         protected internal virtual void Fulfill(object value)
         {
             if (this.promiseState != PromiseState.Pending)
