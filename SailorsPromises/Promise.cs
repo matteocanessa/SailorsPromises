@@ -245,6 +245,7 @@ namespace SailorsPromises
                 }
                 catch
                 {
+                	
                 }
             }
             
@@ -257,9 +258,14 @@ namespace SailorsPromises
             }
         }
 
-        private void InvokeCall<T>(Action<T> callback, object value)
+        private void InvokeCall(Action<object> callback, object value)
         {
-            SynchronizationContext.Send(new SendOrPostCallback(callback as Action<object>), value);
+            SynchronizationContext.Send(new SendOrPostCallback(callback), value);
+        }
+
+        private void InvokeCall(Action<Exception> callback, Exception reason)
+        {
+        	SynchronizationContext.Send(new SendOrPostCallback((obj) => callback(obj as Exception)), reason);
         }
 
         private void Call<T>(Action<T> callback, T value)
