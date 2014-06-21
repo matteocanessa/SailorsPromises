@@ -95,7 +95,7 @@ The same happens for all other actions (`OnError`, `Finally` and `Notification`)
 		}
 	}
 
-Simply get an `ISailor` `A` factory object and return its `Promise`.
+Simply get an `ISailor` from `A` factory object and return its `Promise`.
 During the service logic execution use the `ISailor` instance to interact with the returned `IPromise` for exceptions, notifications and so on.
 
 See the SailorsPromisesTestApp for full examples.
