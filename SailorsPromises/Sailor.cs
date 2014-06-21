@@ -32,7 +32,7 @@ namespace SailorsPromises
     /// <summary>
     /// A Sailor famous for keepeing his promises.
     /// </summary>
-    public class Sailor : ISailor
+    internal class Sailor : ISailor
     {
         private Promise promise;
 

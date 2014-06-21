@@ -37,7 +37,7 @@ namespace SailorsPromisesTestApp
         
         public IPromise Run()
         {
-            var sailor = new Sailor();
+            var sailor = A.Sailor();
             
             new Thread(
             ()

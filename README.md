@@ -8,7 +8,7 @@ It can be installed via [Nuget](https://www.nuget.org/packages/SailorsPromises/)
 
 ##Usage examples:
 
-	new Sailor()
+	            A.Sailor()
 				.When(() => { /*doing some stuff...*/ })
 				.Then((obj) => {/*if When completes, here we are...*/})
 				.OnError((exc) => {/*if exceptions are raised, here we can catch them all...*/});
@@ -18,7 +18,7 @@ If something goes wrong then the `OnError` method will catch the exception.
 
 Then actions can be chained:
 
-	new Sailor()
+	            A.Sailor()
 				.When(() => { /*doing some stuff...*/ })
 				.Then((obj) => {/*if When completes, here we are...*/})
 				.Then((obj) => {/*if the first Then completes, here we are...*/})
@@ -32,7 +32,7 @@ A `Finally` method is always called at the end of the execution chain both when 
 
 A `Notification` method is called whenever there is a notification from the action executed by the `When` method.
 
-	new Sailor()
+	            A.Sailor()
 				.When(() => { /*doing some stuff...*/ })
 				.Then((obj) => {/*if When completes, here we are...})
 				.Notification((obj) => {/*show notifications here...*/})
@@ -42,9 +42,7 @@ A `Notification` method is called whenever there is a notification from the acti
 
 The `InvokeRequired` and `Invoke` management typical of a multithreaded Windows Form application is automatically managed:
 
-	var d = new Sailor();
-
-	d.When(
+	A.Sailor().When(
 		()
 		=>
 		{
@@ -69,7 +67,7 @@ The same happens for all other actions (`OnError`, `Finally` and `Notification`)
 		
 		public IPromise Run()
 		{
-			var sailor = new Sailor();
+			var sailor = A.Sailor();
 			
 			new Thread(
 			()
@@ -97,7 +95,7 @@ The same happens for all other actions (`OnError`, `Finally` and `Notification`)
 		}
 	}
 
-Simply create a new `Sailor` instance and return its `Promise`.
-During the service logic execution use the `Sailor` instance to interact with the returned `Promise` for exceptions, notifications and so on.
+Simply get an `ISailor` `A` factory object and return its `Promise`.
+During the service logic execution use the `ISailor` instance to interact with the returned `IPromise` for exceptions, notifications and so on.
 
 See the SailorsPromisesTestApp for full examples.

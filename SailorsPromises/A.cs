@@ -1,7 +1,9 @@
-﻿// <copyright file="PromiseState.cs" company="https://github.com/matteocanessa/SailorsPromises">
+﻿//-----------------------------------------------------------------------
+// <copyright file="A.cs" company="https://github.com/matteocanessa/SailorsPromises">
 //     Copyright (c) 2014 Matteo Canessa (sailorspromises@gmail.com)
 // </copyright>
-// <summary>Promise state</summary>
+// <summary></summary>
+//-----------------------------------------------------------------------
 //
 // The MIT License (MIT)
 //
@@ -23,33 +25,25 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 // THE SOFTWARE.
 
+using System;
+
 namespace SailorsPromises
 {
-    using System;
-    
     /// <summary>
-    /// Describes the state of a give promise.
+    /// A factory class to get <code>Sailor</code> instances.
     /// </summary>
-    internal enum PromiseState
+    public sealed class A
     {
+        private A()
+        {
+        }
+
         /// <summary>
-        /// The initial state.
-        /// </summary>
-        None,
-        
-        /// <summary>
-        /// A promise to be resolved or rejected.
-        /// </summary>
-        Pending,
-        
-        /// <summary>
-        /// A resolved promise.
-        /// </summary>
-        Fulfilled,
-        
-        /// <summary>
-        /// A rejected promise.
-        /// </summary>
-        Rejected
+        /// Returns an instance of an object implementing the <code>ISailor</code> interface.
+        /// </summary>     
+        public static ISailor Sailor()
+        {
+            return new Sailor();
+        }
     }
 }

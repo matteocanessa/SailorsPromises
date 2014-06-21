@@ -48,7 +48,7 @@ namespace SailorsPromisesTestApp
         
         private void button1_Click(object sender, EventArgs e)
         {
-            new Sailor()
+            A.Sailor()
                 .When(() => { /*doing some stuff...*/ })
                 .Then((obj) => {/*if When completes, here we are...*/})
                 .OnError((exc) => {/*if exceptions are raised, here we can catch them...*/});
@@ -56,15 +56,13 @@ namespace SailorsPromisesTestApp
 
         private void button3_Click(object sender, EventArgs e)
         {
-            var d = new Sailor();
-
-            d.When(
-                ()
-                =>
-                {
-                    Thread.Sleep(5000);
-                }
-                )
+            A.Sailor()
+                .When(
+                    ()
+                    =>
+                    {
+                        Thread.Sleep(5000);
+                    })
                 .Then((value) => button3.Text = "Hoary!")
                 .OnError((exc) => MessageBox.Show(exc.ToString()));
         }

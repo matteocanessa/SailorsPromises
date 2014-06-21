@@ -69,6 +69,7 @@
     <Reference Include="System" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="A.cs" />
     <Compile Include="IPromise.cs" />
     <Compile Include="ISailor.cs" />
     <Compile Include="Promise.cs" />

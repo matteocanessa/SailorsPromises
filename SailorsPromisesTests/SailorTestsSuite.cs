@@ -39,14 +39,14 @@ namespace SailorsPromisesTests
         {
             string val = "iyhbiyhb";
 
-            var promise = A.Fake<Promise>();
-            A.CallTo(() => promise.Fulfill(val))
+            var promise = FakeItEasy.A.Fake<Promise>();
+            FakeItEasy.A.CallTo(() => promise.Fulfill(val))
                 .DoesNothing();
 
             var d = new Sailor(promise);
             d.Resolve(val);
 
-            A.CallTo(() => promise.Fulfill(val))
+            FakeItEasy.A.CallTo(() => promise.Fulfill(val))
                 .MustHaveHappened(Repeated.Exactly.Once);
         }
 
@@ -55,14 +55,14 @@ namespace SailorsPromisesTests
         {
             var exc = new Exception();
 
-            var promise = A.Fake<Promise>();
-            A.CallTo(() => promise.Reject(exc))
+            var promise = FakeItEasy.A.Fake<Promise>();
+            FakeItEasy.A.CallTo(() => promise.Reject(exc))
                 .DoesNothing();
 
             var d = new Sailor(promise);
             d.Reject(exc);
 
-            A.CallTo(() => promise.Reject(exc))
+            FakeItEasy.A.CallTo(() => promise.Reject(exc))
                 .MustHaveHappened(Repeated.Exactly.Once);
         }
 

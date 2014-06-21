@@ -28,7 +28,7 @@ namespace SailorsPromises
     using System;
     
     /// <summary>
-    /// Deferred objects management interface.
+    /// A Sailor famous for keepeing his promises.
     /// </summary>
     public interface ISailor
     {

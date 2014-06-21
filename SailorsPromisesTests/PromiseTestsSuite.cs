@@ -181,13 +181,13 @@ namespace SailorsPromisesTests
 
             object val = null;
 
-            var fake1 = A.Fake<Fake>();
-            A.CallTo(() => fake1.FakeAction(val))
+            var fake1 = FakeItEasy.A.Fake<Fake>();
+            FakeItEasy.A.CallTo(() => fake1.FakeAction(val))
                 .WithAnyArguments()
                 .Invokes(() => call1 = DateTime.Now);
 
-            var fake2 = A.Fake<Fake>();
-            A.CallTo(() => fake2.FakeAction(val))
+            var fake2 = FakeItEasy.A.Fake<Fake>();
+            FakeItEasy.A.CallTo(() => fake2.FakeAction(val))
                 .WithAnyArguments()
                 .Invokes(() => { Thread.Sleep(10); call2 = DateTime.Now; });
 
@@ -212,13 +212,13 @@ namespace SailorsPromisesTests
 
             Exception exc = null;
 
-            var fake1 = A.Fake<Fake>();
-            A.CallTo(() => fake1.FakeAction(exc))
+            var fake1 = FakeItEasy.A.Fake<Fake>();
+            FakeItEasy.A.CallTo(() => fake1.FakeAction(exc))
                 .WithAnyArguments()
                 .Invokes(() => call1 = DateTime.Now);
 
-            var fake2 = A.Fake<Fake>();
-            A.CallTo(() => fake2.FakeAction(exc))
+            var fake2 = FakeItEasy.A.Fake<Fake>();
+            FakeItEasy.A.CallTo(() => fake2.FakeAction(exc))
                 .WithAnyArguments()
                 .Invokes(() => { Thread.Sleep(10); call2 = DateTime.Now; });
 
@@ -243,13 +243,13 @@ namespace SailorsPromisesTests
 
             object val = null;
 
-            var fake1 = A.Fake<Fake>();
-            A.CallTo(() => fake1.FakeAction(val))
+            var fake1 = FakeItEasy.A.Fake<Fake>();
+            FakeItEasy.A.CallTo(() => fake1.FakeAction(val))
                 .WithAnyArguments()
                 .Invokes(() => call1 = DateTime.Now);
 
-            var fake2 = A.Fake<Fake>();
-            A.CallTo(() => fake2.FakeAction(val))
+            var fake2 = FakeItEasy.A.Fake<Fake>();
+            FakeItEasy.A.CallTo(() => fake2.FakeAction(val))
                 .WithAnyArguments()
                 .Invokes(() => { Thread.Sleep(10); call2 = DateTime.Now; });
 
@@ -272,13 +272,13 @@ namespace SailorsPromisesTests
             DateTime? call1 = null;
             DateTime? call2 = null;
 
-            var fake1 = A.Fake<Fake>();
-            A.CallTo(() => fake1.FakeAction())
+            var fake1 = FakeItEasy.A.Fake<Fake>();
+            FakeItEasy.A.CallTo(() => fake1.FakeAction())
                 .WithAnyArguments()
                 .Invokes(() => call1 = DateTime.Now);
 
-            var fake2 = A.Fake<Fake>();
-            A.CallTo(() => fake2.FakeAction())
+            var fake2 = FakeItEasy.A.Fake<Fake>();
+            FakeItEasy.A.CallTo(() => fake2.FakeAction())
                 .WithAnyArguments()
                 .Invokes(() => { Thread.Sleep(10); call2 = DateTime.Now; });
 
@@ -303,13 +303,13 @@ namespace SailorsPromisesTests
 
             Exception exc = null;
 
-            var fake1 = A.Fake<Fake>();
-            A.CallTo(() => fake1.FakeAction(exc))
+            var fake1 = FakeItEasy.A.Fake<Fake>();
+            FakeItEasy.A.CallTo(() => fake1.FakeAction(exc))
                 .WithAnyArguments()
                 .Invokes(() => call1 = DateTime.Now);
 
-            var fake2 = A.Fake<Fake>();
-            A.CallTo(() => fake2.FakeAction(exc))
+            var fake2 = FakeItEasy.A.Fake<Fake>();
+            FakeItEasy.A.CallTo(() => fake2.FakeAction(exc))
                 .WithAnyArguments()
                 .Invokes(() => { Thread.Sleep(10); call2 = DateTime.Now; });
 
@@ -330,20 +330,20 @@ namespace SailorsPromisesTests
         public void Subsequent_promise_instances_fulfill_action_sequence_call_should_respect_the_Then_calls_order()
         {
             DateTime? call1 = null;
-            var fake1 = A.Fake<Fake>();
-            A.CallTo(() => fake1.FakeAction(null as object))
+            var fake1 = FakeItEasy.A.Fake<Fake>();
+            FakeItEasy.A.CallTo(() => fake1.FakeAction(null as object))
                 .WithAnyArguments()
                 .Invokes(() => call1 = DateTime.Now);
 
             DateTime? call2 = null;
-            var fake2 = A.Fake<Fake>();
-            A.CallTo(() => fake2.FakeAction(null as object))
+            var fake2 = FakeItEasy.A.Fake<Fake>();
+            FakeItEasy.A.CallTo(() => fake2.FakeAction(null as object))
                 .WithAnyArguments()
                 .Invokes(() => { Thread.Sleep(10); call2 = DateTime.Now; });
 
             DateTime? call3 = null;
-            var fake3 = A.Fake<Fake>();
-            A.CallTo(() => fake3.FakeAction(null as object))
+            var fake3 = FakeItEasy.A.Fake<Fake>();
+            FakeItEasy.A.CallTo(() => fake3.FakeAction(null as object))
                 .WithAnyArguments()
                 .Invokes(() => { Thread.Sleep(10); call3 = DateTime.Now; });
 
