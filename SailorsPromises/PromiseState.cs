@@ -28,7 +28,7 @@ namespace SailorsPromises
     using System;
     
     /// <summary>
-    /// Description of PromiseState.
+    /// Describes the state of a give promise.
     /// </summary>
     public enum PromiseState
     {

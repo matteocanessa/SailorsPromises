@@ -30,12 +30,15 @@ namespace SailorsPromises
     using System.Threading;
 
     /// <summary>
-    /// Description of Sailor.
+    /// A Sailor famous for keepeing his promises.
     /// </summary>
     public class Sailor : ISailor
     {
         private Promise promise;
 
+        /// <summary>
+        /// Create a new instance of a Sailor
+        /// </summary>
         public Sailor() : this(new Promise())
         {
         }
@@ -51,31 +54,55 @@ namespace SailorsPromises
             }
         }
         
+        /// <summary>
+        /// Gets the <code>IPromise</code> object to manage the asynchronous operation.
+        /// </summary>
         public IPromise Promise
         {
             get { return this.promise; }
         }
 
+        /// <summary>
+        /// Resolves the given promise causing the Then promise action to be called.
+        /// </summary>
+        /// <param name="value">The result of the deferred operation if any, null otherwise.</param>
         public void Resolve(object value)
         {
             this.promise.Fulfill(value);
         }
 
+        /// <summary>
+        /// Rejects the give promise causing the OnError action to be called.
+        /// </summary>
+        /// <param name="exception">The exception causing the promise to be rejected.</param>
         public void Reject(Exception exception)
         {
             this.promise.Reject(exception);
         }
 
+        /// <summary>
+        /// Calls the Finally promise action both when the promise is resolved and when it is rejected.
+        /// </summary>
+        /// <remarks>It works exactly like the <code>finally</code> C# keyword.</remarks>
         public void Finally()
         {
             this.promise.Finally();
         }
 
+        /// <summary>
+        /// Calls the Notify promise action to update the state of the current asynchronous operation.
+        /// </summary>
+        /// <param name="value">A value indicating the progress if any, otherwise null.</param>
         public void Notify(object value)
         {
             this.promise.Notify(value);
         }
 
+        /// <summary>
+        /// Executes the action asyncronously on another thread and the executes the standard promise pattern (then action if all is good, the OnError action if there are exceptions and so on).
+        /// </summary>
+        /// <param name="action">The action to be executed asyncronously on another thread.</param>
+        /// <returns>The promise to interact with.</returns>
         [SuppressMessage("Microsoft.Design", "CA1031", Justification = "I need the exception to be generic to catch all types of exceptions")]
         public IPromise When(Action action)
         {

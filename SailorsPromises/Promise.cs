@@ -30,10 +30,7 @@ namespace SailorsPromises
     using System.Diagnostics.CodeAnalysis;
     using System.Threading;
 
-    /// <summary>
-    /// Description of Promise.
-    /// </summary>
-    public class Promise : IPromise
+    internal class Promise : IPromise
     {
         private List<Action<object>> onFulfilledCallbacks = new List<Action<object>>();
         private List<Action<Exception>> onRejectedCallbacks = new List<Action<Exception>>();

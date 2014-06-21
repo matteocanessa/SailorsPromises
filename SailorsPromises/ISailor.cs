@@ -28,20 +28,44 @@ namespace SailorsPromises
     using System;
     
     /// <summary>
-    /// Description of ISailor.
+    /// Deferred objects management interface.
     /// </summary>
     public interface ISailor
     {
+        /// <summary>
+        /// Gets the <code>IPromise</code> object to manage the asynchronous operation.
+        /// </summary>
         IPromise Promise { get; }
 
+        /// <summary>
+        /// Resolves the given promise causing the Then promise action to be called.
+        /// </summary>
+        /// <param name="value">The result of the deferred operation if any, null otherwise.</param>
         void Resolve(object value);
 
+        /// <summary>
+        /// Rejects the give promise causing the OnError action to be called.
+        /// </summary>
+        /// <param name="exception">The exception causing the promise to be rejected.</param>
         void Reject(Exception exception);
 
+        /// <summary>
+        /// Calls the Finally promise action both when the promise is resolved and when it is rejected.
+        /// </summary>
+        /// <remarks>It works exactly like the <code>finally</code> C# keyword.</remarks>
         void Finally();
 
+        /// <summary>
+        /// Calls the Notify promise action to update the state of the current asynchronous operation.
+        /// </summary>
+        /// <param name="value">A value indicating the progress if any, otherwise null.</param>
         void Notify(object value);
 
+        /// <summary>
+        /// Executes the action asyncronously on another thread and the executes the standard promise pattern (then action if all is good, the OnError action if there are exceptions and so on).
+        /// </summary>
+        /// <param name="action">The action to be executed asyncronously on another thread.</param>
+        /// <returns>The promise to interact with.</returns>
         IPromise When(Action action);
     }
 }
