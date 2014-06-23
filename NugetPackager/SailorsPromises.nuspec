@@ -1,0 +1,25 @@
+<?xml version="1.0"?>
+<package >
+    <metadata>
+        <id>SailorsPromises</id>
+        <version>1.0.5287.43016</version>
+        <title>SailorsPromises</title>
+        <authors>Matteo Canessa (sailorspromises@gmail.com)</authors>
+        <owners>Matteo Canessa</owners>
+        <language>en-US</language>
+        <licenseUrl>https://github.com/matteocanessa/SailorsPromises/wiki/License</licenseUrl>
+        <projectUrl>https://github.com/matteocanessa/SailorsPromises/wiki</projectUrl>
+        <iconUrl>https://raw.githubusercontent.com/matteocanessa/SailorsPromises/master/SailorsPromises.png</iconUrl>
+        <requireLicenseAcceptance>false</requireLicenseAcceptance>
+        <description>A free and open-source library for the .NET Framework to make asynchronous calls more friendly</description>
+        <releaseNotes>https://github.com/matteocanessa/SailorsPromises/wiki/Release-Notes</releaseNotes>
+        <copyright>Copyright 2014</copyright>
+        <tags>Async .Net Promises/A+ promises promise async-programming asynchronous callbacks C# Vb.Net</tags>
+    </metadata>
+    <files>
+        <file src="..\SailorsPromises\bin\Release\SailorsPromises.dll" target="lib\net451" />
+        <file src="..\SailorsPromises\bin\Release\SailorsPromises.xml" target="lib\net451" />
+        <file src="..\SailorsPromises .Net 2.0\SailorsPromises\bin\Release\SailorsPromises.dll" target="lib\net20" />
+        <file src="..\SailorsPromises .Net 2.0\SailorsPromises\bin\Release\SailorsPromises.xml" target="lib\net20" />
+    </files>
+</package>
