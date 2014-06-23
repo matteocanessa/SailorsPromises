@@ -27,6 +27,9 @@ namespace SailorsPromises
 {
     using System;
     
+    /// <summary>
+    /// Delegate to void method which takes no parameters.
+    /// </summary>
     public delegate void Action();
 
     /// <summary>
