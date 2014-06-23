@@ -17,8 +17,8 @@
         <tags>Async .Net Promises/A+ promises promise async-programming asynchronous callbacks C# Vb.Net</tags>
     </metadata>
     <files>
-        <file src="..\SailorsPromises\bin\Release\SailorsPromises.dll" target="lib\net451" />
-        <file src="..\SailorsPromises\bin\Release\SailorsPromises.xml" target="lib\net451" />
+        <file src="..\SailorsPromises .Net 4.5.1\SailorsPromises\bin\Release\SailorsPromises.dll" target="lib\net451" />
+        <file src="..\SailorsPromises .Net 4.5.1\SailorsPromises\bin\Release\SailorsPromises.xml" target="lib\net451" />
         <file src="..\SailorsPromises .Net 2.0\SailorsPromises\bin\Release\SailorsPromises.dll" target="lib\net20" />
         <file src="..\SailorsPromises .Net 2.0\SailorsPromises\bin\Release\SailorsPromises.xml" target="lib\net20" />
     </files>
