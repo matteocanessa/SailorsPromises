@@ -2,6 +2,7 @@
 
 using System;
 using System.Reflection;
+using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
 
 #endregion
@@ -29,3 +30,4 @@ using System.Runtime.InteropServices;
 // You can specify all the values or you can use the default the Revision and 
 // Build Numbers by using the '*' as shown below:
 [assembly: AssemblyVersion("1.0.*")]
+[assembly: InternalsVisibleTo("SailorsPromisesTests, PublicKey=0024000004800000940000000602000000240000525341310004000001000100EFBA8D97E4BCBE57853A5712D5EEA2253FEFC0061535FAD5A3F778CFA402350C95BC589491DC20BF98BC2202A0E003A8CFEE37BCA27399568062E533193AE2A7DE6E950AE1FE4806275D2B676BF783B6C01FA080D37899B5B110F598FC44F30615E901FD326D3376440161B2C6CE63A522814D352D4DC1C63A6F09A822C64BD2")]
