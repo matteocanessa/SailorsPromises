@@ -205,7 +205,7 @@ namespace SailorsPromisesTests
 
         //---------------------------------------------------------------------
         [Fact]
-        public void Same_promise_instance_Reject_action_sequence_call_should_respect_the_Then_calls_order()
+        public void Same_promise_instance_Reject_action_sequence_call_should_respect_the_OnError_calls_order()
         {
             DateTime? call1 = null;
             DateTime? call2 = null;
@@ -292,37 +292,6 @@ namespace SailorsPromisesTests
             call2.Should().HaveValue();
 
             call1.Should().BeBefore(call2.Value, "the first promise finally method call should happen before the second promise finally method call");
-        }
-
-        //---------------------------------------------------------------------
-        [Fact]
-        public void Same_promise_instance_Reject_action_sequence_call_should_respect_the_Catch_calls_order()
-        {
-            DateTime? call1 = null;
-            DateTime? call2 = null;
-
-            Exception exc = null;
-
-            var fake1 = FakeItEasy.A.Fake<Fake>();
-            FakeItEasy.A.CallTo(() => fake1.FakeAction(exc))
-                .WithAnyArguments()
-                .Invokes(() => call1 = DateTime.Now);
-
-            var fake2 = FakeItEasy.A.Fake<Fake>();
-            FakeItEasy.A.CallTo(() => fake2.FakeAction(exc))
-                .WithAnyArguments()
-                .Invokes(() => { Thread.Sleep(10); call2 = DateTime.Now; });
-
-            var promise = new Promise();
-            promise.OnError(fake1.FakeAction);
-            promise.OnError(fake2.FakeAction);
-
-            promise.Reject(new Exception());
-
-            call1.Should().HaveValue();
-            call2.Should().HaveValue();
-
-            call1.Should().BeBefore(call2.Value, "the first promise reject method call should happen before the second promise reject method call");
         }
 
         //---------------------------------------------------------------------

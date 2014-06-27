@@ -9,14 +9,29 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Misc", "Misc", "{09D55C7B-6
 		README.md = README.md
 		License.txt = License.txt
 		.gitignore = .gitignore
-		SailorsPromises_150x126.png = SailorsPromises_150x126.png
+		SailorsPromises.snk = SailorsPromises.snk
+		SailorsPromises.png = SailorsPromises.png
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SailorsPromises", "SailorsPromises\SailorsPromises.csproj", "{C805B63A-F2F3-4B7F-9ED1-8F19083820E1}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".Net 2.0", ".Net 2.0", "{1E2659B0-D4A4-4CB9-99C6-0E4A320503BC}"
+	ProjectSection(SolutionItems) = postProject
+	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SailorsPromisesTests", "SailorsPromisesTests\SailorsPromisesTests.csproj", "{C3169003-F2D4-43D6-9204-F4D407B00C56}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SailorsPromises", "SailorsPromises .Net 2.0\SailorsPromises\SailorsPromises.csproj", "{15A98CEF-A85A-4F91-9D06-99ECDF7A2FDD}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SailorsPromisesTests", "SailorsPromises .Net 2.0\SailorsPromisesTests\SailorsPromisesTests.csproj", "F5D04F0B-0C94-44D4-BA28-84A2B5D7F54D"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".Net 4.5.1", ".Net 4.5.1", "{83E440AB-41B5-4A77-8C87-941E4AC93C3B}"
+	ProjectSection(SolutionItems) = postProject
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SailorsPromises", "SailorsPromises .Net 4.5.1\SailorsPromises\SailorsPromises.csproj", "{C805B63A-F2F3-4B7F-9ED1-8F19083820E1}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SailorsPromisesTestApp", "SailorsPromisesTestApp\SailorsPromisesTestApp.csproj", "{7F17C848-C221-4EA7-96C3-D644DB2378C2}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SailorsPromisesTests", "SailorsPromises .Net 4.5.1\SailorsPromisesTests\SailorsPromisesTests.csproj", "{C3169003-F2D4-43D6-9204-F4D407B00C56}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NugetPackager", "NugetPackager\NugetPackager.csproj", "{9DE21F71-BEFA-4F08-997D-E0CD427F2B52}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -42,6 +57,31 @@ Global
 		{C3169003-F2D4-43D6-9204-F4D407B00C56}.Publish2Nuget|Any CPU.Build.0 = Release|Any CPU
 		{C3169003-F2D4-43D6-9204-F4D407B00C56}.Publish2Nuget|Any CPU.ActiveCfg = Release|Any CPU
 		{C805B63A-F2F3-4B7F-9ED1-8F19083820E1}.Publish2Nuget|Any CPU.Build.0 = Release|Any CPU
-		{C805B63A-F2F3-4B7F-9ED1-8F19083820E1}.Publish2Nuget|Any CPU.ActiveCfg = Publish2Nuget|Any CPU
+		{C805B63A-F2F3-4B7F-9ED1-8F19083820E1}.Publish2Nuget|Any CPU.ActiveCfg = Release|Any CPU
+		{15A98CEF-A85A-4F91-9D06-99ECDF7A2FDD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{15A98CEF-A85A-4F91-9D06-99ECDF7A2FDD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{15A98CEF-A85A-4F91-9D06-99ECDF7A2FDD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{15A98CEF-A85A-4F91-9D06-99ECDF7A2FDD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{15A98CEF-A85A-4F91-9D06-99ECDF7A2FDD}.Publish2Nuget|Any CPU.Build.0 = Debug|Any CPU
+		{15A98CEF-A85A-4F91-9D06-99ECDF7A2FDD}.Publish2Nuget|Any CPU.ActiveCfg = Release|Any CPU
+		{9DE21F71-BEFA-4F08-997D-E0CD427F2B52}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9DE21F71-BEFA-4F08-997D-E0CD427F2B52}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9DE21F71-BEFA-4F08-997D-E0CD427F2B52}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9DE21F71-BEFA-4F08-997D-E0CD427F2B52}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9DE21F71-BEFA-4F08-997D-E0CD427F2B52}.Publish2Nuget|Any CPU.Build.0 = Debug|Any CPU
+		{9DE21F71-BEFA-4F08-997D-E0CD427F2B52}.Publish2Nuget|Any CPU.ActiveCfg = Publish2Nuget|Any CPU
+		F5D04F0B-0C94-44D4-BA28-84A2B5D7F54D.Debug|Any CPU.Build.0 = Debug|Any CPU
+		F5D04F0B-0C94-44D4-BA28-84A2B5D7F54D.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		F5D04F0B-0C94-44D4-BA28-84A2B5D7F54D.Release|Any CPU.Build.0 = Release|Any CPU
+		F5D04F0B-0C94-44D4-BA28-84A2B5D7F54D.Release|Any CPU.ActiveCfg = Release|Any CPU
+		F5D04F0B-0C94-44D4-BA28-84A2B5D7F54D.Publish2Nuget|Any CPU.Build.0 = Debug|Any CPU
+		F5D04F0B-0C94-44D4-BA28-84A2B5D7F54D.Publish2Nuget|Any CPU.ActiveCfg = Debug|Any CPU
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{15A98CEF-A85A-4F91-9D06-99ECDF7A2FDD} = {1E2659B0-D4A4-4CB9-99C6-0E4A320503BC}
+		F5D04F0B-0C94-44D4-BA28-84A2B5D7F54D = {1E2659B0-D4A4-4CB9-99C6-0E4A320503BC}
+		{C805B63A-F2F3-4B7F-9ED1-8F19083820E1} = {83E440AB-41B5-4A77-8C87-941E4AC93C3B}
+		{7F17C848-C221-4EA7-96C3-D644DB2378C2} = {83E440AB-41B5-4A77-8C87-941E4AC93C3B}
+		{C3169003-F2D4-43D6-9204-F4D407B00C56} = {83E440AB-41B5-4A77-8C87-941E4AC93C3B}
 	EndGlobalSection
 EndGlobal

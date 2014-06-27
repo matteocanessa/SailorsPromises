@@ -13,7 +13,7 @@
     <TargetFrameworkProfile />
     <NoWin32Manifest>False</NoWin32Manifest>
     <SignAssembly>True</SignAssembly>
-    <AssemblyOriginatorKeyFile>..\SailorsPromises\SailorsPromises.snk</AssemblyOriginatorKeyFile>
+    <AssemblyOriginatorKeyFile>..\..\SailorsPromises.snk</AssemblyOriginatorKeyFile>
     <DelaySign>False</DelaySign>
     <AssemblyOriginatorKeyMode>File</AssemblyOriginatorKeyMode>
   </PropertyGroup>
@@ -28,7 +28,7 @@
     <CheckForOverflowUnderflow>True</CheckForOverflowUnderflow>
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <StartAction>Program</StartAction>
-    <StartProgram>..\packages\xunit.runners.1.9.2\tools\xunit.gui.clr4.x86.exe</StartProgram>
+    <StartProgram>..\..\packages\xunit.runners.1.9.2\tools\xunit.gui.clr4.x86.exe</StartProgram>
     <StartArguments>SailorsPromisesTests.dll</StartArguments>
     <StartWorkingDirectory>bin\Debug\</StartWorkingDirectory>
   </PropertyGroup>
@@ -45,10 +45,10 @@
       <HintPath>..\packages\FakeItEasy.1.21.0\lib\net40\FakeItEasy.dll</HintPath>
     </Reference>
     <Reference Include="FluentAssertions">
-      <HintPath>..\packages\FluentAssertions.3.0.107\lib\net40\FluentAssertions.dll</HintPath>
+      <HintPath>..\..\packages\FluentAssertions.3.0.107\lib\net45\FluentAssertions.dll</HintPath>
     </Reference>
     <Reference Include="FluentAssertions.Core">
-      <HintPath>..\packages\FluentAssertions.3.0.107\lib\net40\FluentAssertions.Core.dll</HintPath>
+      <HintPath>..\..\packages\FluentAssertions.3.0.107\lib\net45\FluentAssertions.Core.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core">
