@@ -35,33 +35,27 @@ namespace SailorsPromisesTests
         [Fact]
         public void Resolve_method_should_call_promise_fulfill_exactly_once()
         {
-//            string val = "iyhbiyhb";
-//
-//            var promise = FakeItEasy.A.Fake<Promise>();
-//            FakeItEasy.A.CallTo(() => promise.Fulfill(val))
-//                .DoesNothing();
-//
-//            var d = new Sailor(promise);
-//            d.Resolve(val);
-//
-//            FakeItEasy.A.CallTo(() => promise.Fulfill(val))
-//                .MustHaveHappened(Repeated.Exactly.Once);
+            string val = "iyhbiyhb";
+           
+            PromiseMock promiseMock = new PromiseMock();
+
+            Sailor d = new Sailor(promiseMock);
+            d.Resolve(val);
+
+            Assert.Equal(1, promiseMock.FulfillCalls);
         }
 
         [Fact]
         public void Reject_method_should_call_promise_reject_exactly_once()
         {
-//            var exc = new Exception();
-//
-//            var promise = FakeItEasy.A.Fake<Promise>();
-//            FakeItEasy.A.CallTo(() => promise.Reject(exc))
-//                .DoesNothing();
-//
-//            var d = new Sailor(promise);
-//            d.Reject(exc);
-//
-//            FakeItEasy.A.CallTo(() => promise.Reject(exc))
-//                .MustHaveHappened(Repeated.Exactly.Once);
+            Exception exc = new Exception();
+
+            PromiseMock promiseMock = new PromiseMock();
+            
+            Sailor d = new Sailor(promiseMock);
+            d.Reject(exc);
+
+            Assert.Equal(1, promiseMock.RejectCalls);
         }
 
         [Fact]

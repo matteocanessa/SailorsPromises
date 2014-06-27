@@ -22,7 +22,6 @@
 
 using System;
 using System.Threading;
-using Rhino.Mocks;
 using SailorsPromises;
 using Xunit;
 
@@ -202,160 +201,85 @@ namespace SailorsPromisesTests
         [Fact]
         public void Same_promise_instance_Fulfill_action_sequence_call_should_respect_the_Then_calls_order()
         {
-//            DateTime? call1 = null;
-//            DateTime? call2 = null;
-//
-//            object val = null;
-//            
-//            Fake fake1 = MockRepository.GenerateMock<Fake>();
-//            fake1.Stub(() => fake1.FakeAction(val))
-//                .WithAnyArguments()
-//                .Invokes(() => call1 = DateTime.Now);
-//
-//            var fake2 = FakeItEasy.A.Fake<Fake>();
-//            FakeItEasy.A.CallTo(() => fake2.FakeAction(val))
-//                .WithAnyArguments()
-//                .Invokes(() => { Thread.Sleep(10); call2 = DateTime.Now; });
-//
-//            var promise = new Promise();
-//            promise.Then(fake1.FakeAction);
-//            promise.Then(fake2.FakeAction);
-//
-//            promise.Fulfill(new object());
-//
-//            Assert.NotNull(call1);
-//            Assert.NotNull(call2);
-//
-//            //the first promise fulfill method call should happen before the second promise fulfill method call
-//            Assert.True(call1 < call2);     
+            Fake fake1 = new Fake();
+
+            Fake fake2 = new Fake();
+
+            Promise promise = new Promise();
+            promise.Then(fake1.FakeAction);
+            promise.Then(fake2.FakeAction);
+
+            promise.Fulfill(new object());
+
+            Assert.NotNull(fake1.CallDateTime);
+            Assert.NotNull(fake2.CallDateTime);
+            
+            //the first promise fulfill method call should happen before the second promise fulfill method call
+            Assert.True(fake1.CallDateTime < fake2.CallDateTime);
         }
 
         
         [Fact]
-        public void Same_promise_instance_Reject_action_sequence_call_should_respect_the_Then_calls_order()
+        public void Same_promise_instance_Reject_action_sequence_call_should_respect_the_OnError_calls_order()
         {
-//            DateTime? call1 = null;
-//            DateTime? call2 = null;
-//
-//            Exception exc = null;
-//
-//            var fake1 = FakeItEasy.A.Fake<Fake>();
-//            FakeItEasy.A.CallTo(() => fake1.FakeAction(exc))
-//                .WithAnyArguments()
-//                .Invokes(() => call1 = DateTime.Now);
-//
-//            var fake2 = FakeItEasy.A.Fake<Fake>();
-//            FakeItEasy.A.CallTo(() => fake2.FakeAction(exc))
-//                .WithAnyArguments()
-//                .Invokes(() => { Thread.Sleep(10); call2 = DateTime.Now; });
-//
-//            var promise = new Promise();
-//            promise.OnError(fake1.FakeAction);
-//            promise.OnError(fake2.FakeAction);
-//
-//            promise.Reject(new Exception());
-//
-//            Assert.NotNull(call1);
-//            Assert.NotNull(call2);
-//
-//            //the first promise reject method call should happen before the second promise reject method call
-//            Assert.True(call1 < call2);     
+            Fake fake1 = new Fake();
+
+            Fake fake2 = new Fake();
+
+            Promise promise = new Promise();
+            promise.OnError(fake1.FakeAction);
+            promise.OnError(fake2.FakeAction);
+
+            promise.Reject(new Exception());
+
+            Assert.NotNull(fake1.CallDateTime);
+            Assert.NotNull(fake2.CallDateTime);
+            
+            //the first promise reject method call should happen before the second promise reject method call
+            Assert.True(fake1.CallDateTime < fake2.CallDateTime);
         }
 
         
         [Fact]
         public void Same_promise_instance_Notify_action_sequence_call_should_respect_the_Notify_calls_order()
         {
-//            DateTime? call1 = null;
-//            DateTime? call2 = null;
-//
-//            object val = null;
-//
-//            var fake1 = FakeItEasy.A.Fake<Fake>();
-//            FakeItEasy.A.CallTo(() => fake1.FakeAction(val))
-//                .WithAnyArguments()
-//                .Invokes(() => call1 = DateTime.Now);
-//
-//            var fake2 = FakeItEasy.A.Fake<Fake>();
-//            FakeItEasy.A.CallTo(() => fake2.FakeAction(val))
-//                .WithAnyArguments()
-//                .Invokes(() => { Thread.Sleep(10); call2 = DateTime.Now; });
-//
-//            var promise = new Promise();
-//            promise.Notify(fake1.FakeAction);
-//            promise.Notify(fake2.FakeAction);
-//
-//            promise.Notify(new object());
-//
-//            Assert.NotNull(call1);
-//            Assert.NotNull(call2);
-//
-//            //the first promise notify method call should happen before the second promise notify method call
-//            Assert.True(call1 < call2);    
+            Fake fake1 = new Fake();
+
+            Fake fake2 = new Fake();
+
+            Promise promise = new Promise();
+            promise.Notify(fake1.FakeAction);
+            promise.Notify(fake2.FakeAction);
+
+            promise.Notify(new object());
+
+            Assert.NotNull(fake1.CallDateTime);
+            Assert.NotNull(fake2.CallDateTime);
+            
+            //the first promise notify method call should happen before the second promise notify method call
+            Assert.True(fake1.CallDateTime < fake2.CallDateTime);
         }
 
         
         [Fact]
         public void Same_promise_instance_Finally_action_sequence_call_should_respect_the_Finally_calls_order()
-        {
-//            DateTime? call1 = null;
-//            DateTime? call2 = null;
-//
-//            var fake1 = FakeItEasy.A.Fake<Fake>();
-//            FakeItEasy.A.CallTo(() => fake1.FakeAction())
-//                .WithAnyArguments()
-//                .Invokes(() => call1 = DateTime.Now);
-//
-//            var fake2 = FakeItEasy.A.Fake<Fake>();
-//            FakeItEasy.A.CallTo(() => fake2.FakeAction())
-//                .WithAnyArguments()
-//                .Invokes(() => { Thread.Sleep(10); call2 = DateTime.Now; });
-//
-//            var promise = new Promise();
-//            promise.Finally(new Action(fake1.FakeAction));
-//            promise.Finally(new Action(fake2.FakeAction));
-//
-//            promise.Finally();
-//
-//            Assert.NotNull(call1);
-//            Assert.NotNull(call2);
-//
-//            //the first promise finally method call should happen before the second promise finally method call
-//            Assert.True(call1 < call2);   
-        }
+        {  
+            Fake fake1 = new Fake();
 
-        
-        [Fact]
-        public void Same_promise_instance_Reject_action_sequence_call_should_respect_the_Catch_calls_order()
-        {
-//            DateTime? call1 = null;
-//            DateTime? call2 = null;
-//
-//            Exception exc = null;
-//
-//            var fake1 = FakeItEasy.A.Fake<Fake>();
-//            FakeItEasy.A.CallTo(() => fake1.FakeAction(exc))
-//                .WithAnyArguments()
-//                .Invokes(() => call1 = DateTime.Now);
-//
-//            var fake2 = FakeItEasy.A.Fake<Fake>();
-//            FakeItEasy.A.CallTo(() => fake2.FakeAction(exc))
-//                .WithAnyArguments()
-//                .Invokes(() => { Thread.Sleep(10); call2 = DateTime.Now; });
-//
-//            var promise = new Promise();
-//            promise.OnError(fake1.FakeAction);
-//            promise.OnError(fake2.FakeAction);
-//
-//            promise.Reject(new Exception());
-//            
-//            Assert.NotNull(call1);
-//            Assert.NotNull(call2);
-//
-//            //the first promise reject method call should happen before the second promise reject method call
-//            Assert.True(call1 < call2);  
-        }
+            Fake fake2 = new Fake();
 
+            Promise promise = new Promise();
+            promise.Finally(fake1.FakeAction);
+            promise.Finally(fake2.FakeAction);
+
+            promise.Finally();
+
+            Assert.NotNull(fake1.CallDateTime);
+            Assert.NotNull(fake2.CallDateTime);
+            
+            //the first promise finally method call should happen before the second promise finally method call
+            Assert.True(fake1.CallDateTime < fake2.CallDateTime);
+        }
         
         [Fact]
         public void Subsequent_promise_instances_fulfill_action_sequence_call_should_respect_the_Then_calls_order()
@@ -393,6 +317,26 @@ namespace SailorsPromisesTests
 //            Assert.True(call1 < call2);
 //            //the second promise fulfill method call should happen before the third promise fulfill method call
 //            Assert.True(call2 < call3);
+
+            Fake fake1 = new Fake();
+            Fake fake2 = new Fake();
+            Fake fake3 = new Fake();
+            
+            Promise promise = new Promise();
+            promise.Then(fake1.FakeAction)
+                .Then(fake2.FakeAction)
+                .Then(fake3.FakeAction);
+            
+            promise.Fulfill(null);
+            
+            Assert.NotNull(fake1.CallDateTime);
+            Assert.NotNull(fake2.CallDateTime);
+            Assert.NotNull(fake3.CallDateTime);
+
+            //the first promise fulfill method call should happen before the second promise fulfill method call
+            Assert.True(fake1.CallDateTime < fake2.CallDateTime);
+            //the second promise fulfill method call should happen before the third promise fulfill method call
+            Assert.True(fake2.CallDateTime < fake3.CallDateTime);
         }
 
         
@@ -514,13 +458,28 @@ namespace SailorsPromisesTests
     //=========================================================================
     public class Fake
     {
+        DateTime? callDateTime;
+        
+        public DateTime? CallDateTime {
+            get { return callDateTime; }
+        }
+        
         public virtual void FakeAction(object obj)
-        { }
+        {
+            System.Threading.Thread.Sleep(500);
+            this.callDateTime = DateTime.Now;
+        }
 
         public virtual void FakeAction()
-        { }
+        {
+            System.Threading.Thread.Sleep(500);
+            this.callDateTime = DateTime.Now;
+        }
 
         public virtual void FakeAction(Exception exc)
-        { }
+        {
+            System.Threading.Thread.Sleep(500);
+            this.callDateTime = DateTime.Now;
+        }
     }
 }

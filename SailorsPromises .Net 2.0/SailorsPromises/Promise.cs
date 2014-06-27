@@ -47,7 +47,7 @@ namespace SailorsPromises
         {
         }
         
-        public object Value
+        public virtual object Value
         {
             get
             {
@@ -60,7 +60,7 @@ namespace SailorsPromises
             }
         }
 
-        public Exception Reason
+        public virtual Exception Reason
         {
             get
             {
@@ -73,13 +73,13 @@ namespace SailorsPromises
             }
         }
 
-        internal SynchronizationContext SynchronizationContext
+        internal virtual SynchronizationContext SynchronizationContext
         {
             get { return this.synchronizationContext; }
             set { this.synchronizationContext = value; }
         }
 
-        public IPromise Then(Action<object> onFulfilled)
+        public virtual IPromise Then(Action<object> onFulfilled)
         {
             if (onFulfilled != null)
             {
@@ -95,7 +95,7 @@ namespace SailorsPromises
             return this.followingPromise;
         }
 
-        public IPromise OnError(Action<Exception> onRejected)
+        public virtual IPromise OnError(Action<Exception> onRejected)
         {
             if (onRejected != null)
             {
@@ -111,7 +111,7 @@ namespace SailorsPromises
             return this.followingPromise;
         }
 
-        public IPromise Finally(Action onFinally)
+        public virtual IPromise Finally(Action onFinally)
         {
             if (onFinally != null)
             {
@@ -127,7 +127,7 @@ namespace SailorsPromises
             return this.followingPromise;
         }
 
-        public IPromise Notify(Action<object> onNotify)
+        public virtual IPromise Notify(Action<object> onNotify)
         {
             if (onNotify != null)
             {
@@ -144,7 +144,7 @@ namespace SailorsPromises
         }
 
         [SuppressMessage("Microsoft.Design", "CA1031", Justification = "I need the exception to be generic to catch all types of exceptions")]
-        internal void Finally()
+        internal virtual void Finally()
         {
             Action<Action> action = (SynchronizationContext != null) ? (Action<Action>)this.InvokeCall : this.Call;
 
@@ -166,7 +166,7 @@ namespace SailorsPromises
         }
 
         [SuppressMessage("Microsoft.Design", "CA1031", Justification = "I need the exception to be generic to catch all types of exceptions")]
-        internal void Notify(object value)
+        internal virtual void Notify(object value)
         {
             ActionObjectDelegate action = 
                 (SynchronizationContext != null) ?
