@@ -453,33 +453,5 @@ namespace SailorsPromisesTests
             //Notify throwing exception should not prevent the catch call on subsequent promises
             Assert.True(call);
         }
-    }
-
-    //=========================================================================
-    public class Fake
-    {
-        DateTime? callDateTime;
-        
-        public DateTime? CallDateTime {
-            get { return callDateTime; }
-        }
-        
-        public virtual void FakeAction(object obj)
-        {
-            System.Threading.Thread.Sleep(500);
-            this.callDateTime = DateTime.Now;
-        }
-
-        public virtual void FakeAction()
-        {
-            System.Threading.Thread.Sleep(500);
-            this.callDateTime = DateTime.Now;
-        }
-
-        public virtual void FakeAction(Exception exc)
-        {
-            System.Threading.Thread.Sleep(500);
-            this.callDateTime = DateTime.Now;
-        }
-    }
+    }   
 }
