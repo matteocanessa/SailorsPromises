@@ -64,7 +64,7 @@
     <None Include="app.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\SailorsPromises .Net 4.5.1\SailorsPromises\SailorsPromises.csproj">
+    <ProjectReference Include="..\SailorsPromises\SailorsPromises.csproj">
       <Project>{C805B63A-F2F3-4B7F-9ED1-8F19083820E1}</Project>
       <Name>SailorsPromises</Name>
     </ProjectReference>
