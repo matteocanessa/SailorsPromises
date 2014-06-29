@@ -59,6 +59,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ATestsSuite.cs" />
     <Compile Include="Fake.cs" />
     <Compile Include="PromiseMock.cs" />
     <Compile Include="PromiseTestsSuite.cs" />

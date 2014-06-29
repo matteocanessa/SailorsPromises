@@ -1,5 +1,5 @@
 ﻿//-----------------------------------------------------------------------
-// <copyright file="A.cs" company="https://github.com/matteocanessa/SailorsPromises">
+// <copyright file="ATestsSuite.cs" company="https://github.com/matteocanessa/SailorsPromises">
 //     Copyright (c) 2014 Matteo Canessa (sailorspromises@gmail.com)
 // </copyright>
 // <summary></summary>
@@ -26,20 +26,33 @@
 // THE SOFTWARE.
 
 using System;
+using SailorsPromises;
+using Xunit;
 
-namespace SailorsPromises
+namespace SailorsPromisesTests
 {
     /// <summary>
-    /// A factory class to get <code>Sailor</code> instances.
+    /// Description of ATestsSuite.
     /// </summary>
-    public static class A
+    public class ATestsSuite
     {
-        /// <summary>
-        /// Returns an instance of an object implementing the <code>ISailor</code> interface.
-        /// </summary>     
-        public static ISailor Sailor()
+        [Fact]
+        public void Sailor_method_should_return_a_Sailor_instance()
         {
-            return new Sailor();
+           ISailor s = A.Sailor();
+
+           //Sailor method should return a Sailor instance
+           Assert.True(s.GetType().IsAssignableFrom(typeof(Sailor)));
+        }
+        
+        [Fact]
+        public void Sailor_method_should_return_a_new_Sailor_instance_every_call()
+        {
+           ISailor s = A.Sailor();
+           ISailor s1 = A.Sailor();
+
+           //Sailor method should return a Sailor instance
+           Assert.False(Object.ReferenceEquals(s, s1));
         }
     }
 }

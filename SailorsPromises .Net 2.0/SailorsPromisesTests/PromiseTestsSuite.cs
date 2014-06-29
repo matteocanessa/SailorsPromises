@@ -128,7 +128,7 @@ namespace SailorsPromisesTests
 
         
         [Fact]
-        public void If_InvokeRequiredOn_is_called_then_the_new_promise_returned_by_the_Then_method_should_have_the_same_control()
+        public void If_SynchronizationContext_is_called_then_the_new_promise_returned_by_the_Then_method_should_have_the_same_control()
         {
             SynchronizationContext sc = new SynchronizationContext();
 
@@ -146,7 +146,7 @@ namespace SailorsPromisesTests
 
         
         [Fact]
-        public void If_InvokeRequiredOn_is_called_then_the_new_promise_returned_by_the_Catch_method_should_have_the_same_control()
+        public void If_SynchronizationContext_is_called_then_the_new_promise_returned_by_the_Catch_method_should_have_the_same_control()
         {
             SynchronizationContext sc = new SynchronizationContext();
 
@@ -164,7 +164,7 @@ namespace SailorsPromisesTests
 
         
         [Fact]
-        public void If_InvokeRequiredOn_is_called_then_the_new_promise_returned_by_the_Finally_method_should_have_the_same_control()
+        public void If_SynchronizationContext_is_called_then_the_new_promise_returned_by_the_Finally_method_should_have_the_same_control()
         {
             SynchronizationContext sc = new SynchronizationContext();
 
@@ -181,7 +181,7 @@ namespace SailorsPromisesTests
 
         
         [Fact]
-        public void If_InvokeRequiredOn_is_called_then_the_new_promise_returned_by_the_Notify_method_should_have_the_same_control()
+        public void If_SynchronizationContext_is_called_then_the_new_promise_returned_by_the_Notify_method_should_have_the_same_control()
         {
             SynchronizationContext sc = new SynchronizationContext();
 
