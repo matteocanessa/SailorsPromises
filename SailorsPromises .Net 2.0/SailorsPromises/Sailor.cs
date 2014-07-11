@@ -30,7 +30,7 @@ namespace SailorsPromises
     using System.Threading;
 
     /// <summary>
-    /// A Sailor famous for keepeing his promises.
+    /// A Sailor famous for keeping his promises.
     /// </summary>
     internal class Sailor : ISailor
     {
@@ -99,9 +99,9 @@ namespace SailorsPromises
         }
 
         /// <summary>
-        /// Executes the action asyncronously on another thread and the executes the standard promise pattern (then action if all is good, the OnError action if there are exceptions and so on).
+        /// Executes the action asynchronously on another thread and the executes the standard promise pattern (then action if all is good, the OnError action if there are exceptions and so on).
         /// </summary>
-        /// <param name="action">The action to be executed asyncronously on another thread.</param>
+        /// <param name="action">The action to be executed asynchronously on another thread.</param>
         /// <returns>The promise to interact with.</returns>
         [SuppressMessage("Microsoft.Design", "CA1031", Justification = "I need the exception to be generic to catch all types of exceptions")]
         public IPromise When(Action action)

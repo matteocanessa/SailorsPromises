@@ -30,19 +30,32 @@ namespace SailorsPromises
     using System.Diagnostics.CodeAnalysis;
     using System.Threading;
 
+    /// <summary>
+    /// Internal class implementing the <code>IPromise</code> interface
+    /// </summary>
     internal class Promise : IPromise
     {
+        /// <remarks />
         private List<Action<object>> onFulfilledCallbacks = new List<Action<object>>();
+        /// <remarks />
         private List<Action<Exception>> onRejectedCallbacks = new List<Action<Exception>>();
+        /// <remarks />
         private List<Action<object>> onNotifyCallbacks = new List<Action<object>>();
+        /// <remarks />
         private List<Action> onFinalllyCallbacks = new List<Action>();
 
+        /// <remarks />
         private object value;
-        private Exception reason;
+        /// <remarks />
+         private Exception reason;
+        /// <remarks />
         private Promise followingPromise;
+        /// <remarks />
         private SynchronizationContext synchronizationContext;
+        /// <remarks />
         private PromiseState promiseState = PromiseState.Pending;
 
+        /// <remarks />
         internal Promise()
         {
         }

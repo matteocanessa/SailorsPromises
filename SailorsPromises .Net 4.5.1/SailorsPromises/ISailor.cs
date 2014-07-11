@@ -28,7 +28,7 @@ namespace SailorsPromises
     using System;
     
     /// <summary>
-    /// A Sailor famous for keepeing his promises.
+    /// A Sailor famous for keeping his promises.
     /// </summary>
     public interface ISailor
     {

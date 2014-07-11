@@ -28,7 +28,7 @@ namespace SailorsPromises
     using System;
     
     /// <summary>
-    /// A Sailor famous for keepeing his promises.
+    /// A Sailor famous for keeping his promises.
     /// </summary>
     public interface ISailor
     {
@@ -64,7 +64,7 @@ namespace SailorsPromises
         /// <summary>
         /// Executes the action asyncronously on another thread and the executes the standard promise pattern (then action if all is good, the OnError action if there are exceptions and so on).
         /// </summary>
-        /// <param name="action">The action to be executed asyncronously on another thread.</param>
+        /// <param name="action">The action to be executed asynchronously on another thread.</param>
         /// <returns>The promise to interact with.</returns>
         IPromise When(Action action);
     }

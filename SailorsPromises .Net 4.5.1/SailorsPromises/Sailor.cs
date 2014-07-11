@@ -30,7 +30,7 @@ namespace SailorsPromises
     using System.Threading;
 
     /// <summary>
-    /// A Sailor famous for keepeing his promises.
+    /// A Sailor famous for keeping his promises.
     /// </summary>
     internal class Sailor : ISailor
     {

@@ -2,7 +2,7 @@
 // <copyright file="A.cs" company="https://github.com/matteocanessa/SailorsPromises">
 //     Copyright (c) 2014 Matteo Canessa (sailorspromises@gmail.com)
 // </copyright>
-// <summary></summary>
+// <summary>Factory class for ISailor</summary>
 //-----------------------------------------------------------------------
 //
 // The MIT License (MIT)
@@ -25,22 +25,24 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 // THE SOFTWARE.
 
-using System;
-
 namespace SailorsPromises
 {
+    using System;
+
     /// <summary>
     /// A factory class to get <code>Sailor</code> instances.
     /// </summary>
     public sealed class A
     {
+        /// <remarks />
         private A()
         {
         }
 
         /// <summary>
         /// Returns an instance of an object implementing the <code>ISailor</code> interface.
-        /// </summary>     
+        /// </summary>
+        /// <returns>An object implementing the <code>ISailor</code> interface</returns>        
         public static ISailor Sailor()
         {
             return new Sailor();
