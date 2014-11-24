@@ -11,6 +11,8 @@ packages
 *.css
 *.[Ss]ettings
 *.[Ss]ource[Aa]nalysis
+*.user
+*.suo
 
 index.html
 FluentAssertions*.html

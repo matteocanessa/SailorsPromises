@@ -25,51 +25,69 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 // THE SOFTWARE.
 
+using SailorsPromises;
 using System;
-using System.Collections.Generic;
-using System.Drawing;
 using System.Threading;
 using System.Windows.Forms;
 
-using SailorsPromises;
-
 namespace SailorsPromisesTestApp
 {
-    /// <summary>
-    /// Description of MainForm.
-    /// </summary>
-    public partial class MainForm : Form
-    {
-        public MainForm()
-        {
-            //
-            // The InitializeComponent() call is required for Windows Forms designer support.
-            //
-            InitializeComponent();
-            
-            //
-            // TODO: Add constructor code after the InitializeComponent() call.
-            //
-        }
-        
-         private void button1_Click(object sender, EventArgs e)
-        {
-            A.Sailor()
-                .When(delegate() { /*doing some stuff...*/ })
-                .Then(delegate(object obj) {/*if When completes, here we are...*/})
-                .OnError(delegate(Exception exc) {/*if exceptions are raised, here we can catch them...*/});
-        }
+	/// <summary>
+	/// Description of MainForm.
+	/// </summary>
+	public partial class MainForm : Form
+	{
+		public MainForm()
+		{
+			//
+			// The InitializeComponent() call is required for Windows Forms designer support.
+			//
+			InitializeComponent();
+			
+			//
+			// TODO: Add constructor code after the InitializeComponent() call.
+			//
 
-        private void button3_Click(object sender, EventArgs e)
-        {
-            A.Sailor()
-                .When(
-                    delegate()
-                    {
-                        Thread.Sleep(5000);
-                    })
-                .Then(delegate(object value) { button3.Text = "Hoary!";})
-                .OnError(delegate(Exception exc) { MessageBox.Show(exc.ToString());});
-        }
-    }
+			//Show a splash window
+			var splash = new Splash();
+
+			var sailor = A.Sailor();
+			sailor
+				.When(() =>
+				{
+					Thread.Sleep(3000);
+					sailor.Notify("First heavy loading success");
+					Thread.Sleep(3000);
+					sailor.Notify("Now its time to load something else...");
+					Thread.Sleep(3000);
+					sailor.Notify("Application loaded!");
+
+				})
+				.Notify((obj) => splash.SetText(obj.ToString()))
+				.Finally(() => splash.Dispose());
+
+
+			splash.ShowDialog(this);
+		}
+		
+		 private void button1_Click(object sender, EventArgs e)
+		{
+			A.Sailor()
+				.When(delegate() { /*doing some stuff...*/ })
+				.Then(delegate(object obj) {/*if When completes, here we are...*/})
+				.OnError(delegate(Exception exc) {/*if exceptions are raised, here we can catch them...*/});
+		}
+
+		private void button3_Click(object sender, EventArgs e)
+		{
+			A.Sailor()
+				.When(
+					delegate()
+					{
+						Thread.Sleep(5000);
+					})
+				.Then(delegate(object value) { button3.Text = "Horay!";})
+				.OnError(delegate(Exception exc) { MessageBox.Show(exc.ToString());});
+		}
+	}
 }

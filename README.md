@@ -6,7 +6,61 @@ It is a promise/deferred implementation inspired by [AngularJS $q](https://docs.
 
 It can be installed via [Nuget](https://www.nuget.org/packages/SailorsPromises/).
 
-##Usage examples:
+##Implementing your own deferred service proxy
+
+	public class MySuperServiceProxy
+	{
+		public MySuperServiceProxy()
+		{
+		}
+		
+		public IPromise Run()
+		{
+			var sailor = A.Sailor();
+			
+			new Thread(
+			()
+			=>
+			{
+					try {
+						while (true) {
+							//My long execution calling the service on the Internet...	
+							Thread.Sleep(1000);
+							sailor.Notify("Something happened");
+							Thread.Sleep(1000);
+							object result = null;
+							sailor.Resolve(result);
+						}
+					} catch (Exception exception) {
+						
+						sailor.Reject(exception);
+					} finally {
+						sailor.Finally();
+					}
+			}
+			).Start();
+			
+			return sailor.Promise;
+		}
+	}
+
+Simply get an `ISailor` from `A` factory object and return its `Promise`.
+During the service logic execution use the `ISailor` instance to interact with the returned `IPromise` for exceptions, notifications and so on.
+
+##Using the service proxy
+
+	var mySuperServiceInstance = new MySuperServiceProxy();
+
+	var servicePromise = mySuperServiceInstance.Run();
+
+	servicePromise.Then((obj) => {/*if the service completes the execution,
+					here we are...*/})
+
+	servicePromise.OnError((exc) => {/*if exceptions are raised,
+					here we can catch them all...*/});
+
+
+##Other usage examples:
 
 	            A.Sailor()
 				.When(() => { /*doing some stuff...*/ })
@@ -56,46 +110,29 @@ The `InvokeRequired` and `Invoke` management typical of a multithreaded Windows 
 the `When` action is executed on another thread and when it completes the `Then` action execution is pushed on the current form message pump avoiding cross thread operations issues.
 The same happens for all other actions (`OnError`, `Finally` and `Notification`).
 
+##How to implement a splash window
 
-##Implementing your own deferred service
+			var splash = new Splash();
 
-	public class MySuperService
-	{
-		public MySuperService()
-		{
-		}
-		
-		public IPromise Run()
-		{
 			var sailor = A.Sailor();
-			
-			new Thread(
-			()
-			=>
-			{
-					try {
-						while (true) {
-							//My long execution...	
-							Thread.Sleep(1000);
-							sailor.Notify("Something happened");
-							Thread.Sleep(1000);
-							object result = null;
-							sailor.Resolve(result);
-						}
-					} catch (Exception exception) {
-						
-						sailor.Reject(exception);
-					} finally {
-						sailor.Finally();
-					}
-			}
-			).Start();
-			
-			return sailor.Promise;
-		}
-	}
+			sailor
+				.When(() =>
+				{
+					Thread.Sleep(3000);
+					sailor.Notify("First heavy loading success");
+					Thread.Sleep(3000);
+					sailor.Notify("Now its time to load something else...");
+					Thread.Sleep(3000);
+					sailor.Notify("Application loaded!");
 
-Simply get an `ISailor` from `A` factory object and return its `Promise`.
-During the service logic execution use the `ISailor` instance to interact with the returned `IPromise` for exceptions, notifications and so on.
+				})
+				.Notify((obj) => splash.SetText(obj.ToString()))
+				.Finally(() => splash.Dispose());
+
+
+			splash.ShowDialog(this);
+
+The splash window is modal and the application goes on loading stuff in background.
+Notifications are sent from the background thread to the Splash form without worrying about cross thread operations issues.
 
 See the SailorsPromisesTestApp for full examples.
