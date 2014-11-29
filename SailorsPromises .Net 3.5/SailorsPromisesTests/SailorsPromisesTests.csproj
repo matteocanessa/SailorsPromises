@@ -86,7 +86,7 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\SailorsPromises\SailorsPromises.csproj">
-      <Project>{C805B63A-F2F3-4B7F-9ED1-8F19083820E1}</Project>
+      <Project>{3fceed50-2edc-4f0f-a8c1-45ec5e81b7ed}</Project>
       <Name>SailorsPromises</Name>
     </ProjectReference>
   </ItemGroup>
