@@ -12,15 +12,13 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Misc", "Misc", "{09D55C7B-6
 		SailorsPromises.snk = SailorsPromises.snk
 	EndProjectSection
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".Net 2.0", ".Net 2.0", "{1E2659B0-D4A4-4CB9-99C6-0E4A320503BC}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SailorsPromises", "SailorsPromises .Net 2.0\SailorsPromises\SailorsPromises.csproj", "{15A98CEF-A85A-4F91-9D06-99ECDF7A2FDD}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SailorsPromisesTests", "SailorsPromises .Net 2.0\SailorsPromisesTests\SailorsPromisesTests.csproj", "{A44F8D46-87F3-4B72-89D3-F5335369DF56}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SailorsPromisesTestApp", "SailorsPromises .Net 2.0\SailorsPromisesTestApp\SailorsPromisesTestApp.csproj", "{453A1B51-A0FF-43BB-AB9A-1E37B2997310}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NugetPackager", "NugetPackager\NugetPackager.csproj", "{9DE21F71-BEFA-4F08-997D-E0CD427F2B52}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SailorsPromises", "SailorsPromises\SailorsPromises.csproj", "{15A98CEF-A85A-4F91-9D06-99ECDF7A2FDD}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SailorsPromisesTests", "SailorsPromisesTests\SailorsPromisesTests.csproj", "{A44F8D46-87F3-4B72-89D3-F5335369DF56}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SailorsPromisesTestApp", "SailorsPromisesTestApp\SailorsPromisesTestApp.csproj", "{453A1B51-A0FF-43BB-AB9A-1E37B2997310}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -29,6 +27,10 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{9DE21F71-BEFA-4F08-997D-E0CD427F2B52}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9DE21F71-BEFA-4F08-997D-E0CD427F2B52}.Publish2Nuget|Any CPU.ActiveCfg = Publish2Nuget|Any CPU
+		{9DE21F71-BEFA-4F08-997D-E0CD427F2B52}.Publish2Nuget|Any CPU.Build.0 = Publish2Nuget|Any CPU
+		{9DE21F71-BEFA-4F08-997D-E0CD427F2B52}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{15A98CEF-A85A-4F91-9D06-99ECDF7A2FDD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{15A98CEF-A85A-4F91-9D06-99ECDF7A2FDD}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{15A98CEF-A85A-4F91-9D06-99ECDF7A2FDD}.Publish2Nuget|Any CPU.ActiveCfg = Release|Any CPU
@@ -38,22 +40,17 @@ Global
 		{A44F8D46-87F3-4B72-89D3-F5335369DF56}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{A44F8D46-87F3-4B72-89D3-F5335369DF56}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A44F8D46-87F3-4B72-89D3-F5335369DF56}.Publish2Nuget|Any CPU.ActiveCfg = Release|Any CPU
+		{A44F8D46-87F3-4B72-89D3-F5335369DF56}.Publish2Nuget|Any CPU.Build.0 = Release|Any CPU
 		{A44F8D46-87F3-4B72-89D3-F5335369DF56}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A44F8D46-87F3-4B72-89D3-F5335369DF56}.Release|Any CPU.Build.0 = Release|Any CPU
 		{453A1B51-A0FF-43BB-AB9A-1E37B2997310}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{453A1B51-A0FF-43BB-AB9A-1E37B2997310}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{453A1B51-A0FF-43BB-AB9A-1E37B2997310}.Publish2Nuget|Any CPU.ActiveCfg = Debug|Any CPU
+		{453A1B51-A0FF-43BB-AB9A-1E37B2997310}.Publish2Nuget|Any CPU.ActiveCfg = Release|Any CPU
+		{453A1B51-A0FF-43BB-AB9A-1E37B2997310}.Publish2Nuget|Any CPU.Build.0 = Release|Any CPU
 		{453A1B51-A0FF-43BB-AB9A-1E37B2997310}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{9DE21F71-BEFA-4F08-997D-E0CD427F2B52}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{9DE21F71-BEFA-4F08-997D-E0CD427F2B52}.Publish2Nuget|Any CPU.ActiveCfg = Publish2Nuget|Any CPU
-		{9DE21F71-BEFA-4F08-997D-E0CD427F2B52}.Publish2Nuget|Any CPU.Build.0 = Publish2Nuget|Any CPU
-		{9DE21F71-BEFA-4F08-997D-E0CD427F2B52}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{453A1B51-A0FF-43BB-AB9A-1E37B2997310}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
-	EndGlobalSection
-	GlobalSection(NestedProjects) = preSolution
-		{15A98CEF-A85A-4F91-9D06-99ECDF7A2FDD} = {1E2659B0-D4A4-4CB9-99C6-0E4A320503BC}
-		{A44F8D46-87F3-4B72-89D3-F5335369DF56} = {1E2659B0-D4A4-4CB9-99C6-0E4A320503BC}
-		{453A1B51-A0FF-43BB-AB9A-1E37B2997310} = {1E2659B0-D4A4-4CB9-99C6-0E4A320503BC}
 	EndGlobalSection
 EndGlobal

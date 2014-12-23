@@ -1,23 +1,26 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="2.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" DefaultTargets="Build">
   <PropertyGroup>
-    <ProjectGuid>{A44F8D46-87F3-4B72-89D3-F5335369DF56}</ProjectGuid>
-    <ProjectTypeGuids>{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <ProjectGuid>{15A98CEF-A85A-4F91-9D06-99ECDF7A2FDD}</ProjectGuid>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <OutputType>Library</OutputType>
-    <RootNamespace>SailorsPromisesTests</RootNamespace>
-    <AssemblyName>SailorsPromisesTests</AssemblyName>
+    <RootNamespace>SailorsPromises</RootNamespace>
+    <AssemblyName>SailorsPromises</AssemblyName>
     <TargetFrameworkVersion>v2.0</TargetFrameworkVersion>
+    <TargetFrameworkProfile>
+    </TargetFrameworkProfile>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <TargetFrameworkProfile />
     <NoWin32Manifest>False</NoWin32Manifest>
+    <RunCodeAnalysis>False</RunCodeAnalysis>
+    <SourceAnalysisOverrideSettingsFile>C:\Users\Matteo\AppData\Roaming\ICSharpCode/SharpDevelop4\Settings.SourceAnalysis</SourceAnalysisOverrideSettingsFile>
     <SignAssembly>True</SignAssembly>
-    <AssemblyOriginatorKeyFile>..\..\SailorsPromises.snk</AssemblyOriginatorKeyFile>
+    <AssemblyOriginatorKeyFile>SailorsPromises.snk</AssemblyOriginatorKeyFile>
     <DelaySign>False</DelaySign>
     <AssemblyOriginatorKeyMode>File</AssemblyOriginatorKeyMode>
     <AllowUnsafeBlocks>False</AllowUnsafeBlocks>
     <NoStdLib>False</NoStdLib>
+    <DocumentationFile>bin\Release\SailorsPromises.xml</DocumentationFile>
     <TreatWarningsAsErrors>False</TreatWarningsAsErrors>
     <IntermediateOutputPath>obj\$(Configuration)\</IntermediateOutputPath>
     <WarningLevel>4</WarningLevel>
@@ -36,11 +39,6 @@
     <Optimize>False</Optimize>
     <CheckForOverflowUnderflow>True</CheckForOverflowUnderflow>
     <DefineConstants>DEBUG;TRACE</DefineConstants>
-    <StartAction>Program</StartAction>
-    <StartProgram>..\..\packages\xunit.runners.1.9.2\tools\xunit.gui.x86.exe</StartProgram>
-    <StartArguments>SailorsPromisesTests.dll</StartArguments>
-    <StartWorkingDirectory>bin\Debug\</StartWorkingDirectory>
-    <BaseIntermediateOutputPath>obj\</BaseIntermediateOutputPath>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)' == 'Release' ">
     <OutputPath>bin\Release\</OutputPath>
@@ -49,6 +47,7 @@
     <Optimize>True</Optimize>
     <CheckForOverflowUnderflow>False</CheckForOverflowUnderflow>
     <DefineConstants>TRACE</DefineConstants>
+    <BaseIntermediateOutputPath>obj\</BaseIntermediateOutputPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|AnyCPU'">
     <LangVersion>default</LangVersion>
@@ -58,27 +57,20 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
-    <Reference Include="System.Xml" />
-    <Reference Include="xunit">
-      <HintPath>..\..\packages\xunit.1.9.2\lib\net20\xunit.dll</HintPath>
-    </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ATestsSuite.cs" />
-    <Compile Include="Fake.cs" />
-    <Compile Include="PromiseMock.cs" />
-    <Compile Include="PromiseTestsSuite.cs" />
+    <Compile Include="A.cs" />
+    <Compile Include="IPromise.cs" />
+    <Compile Include="ISailor.cs" />
+    <Compile Include="Promise.cs" />
+    <Compile Include="PromiseState.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="SailorTestsSuite.cs" />
+    <Compile Include="Sailor.cs" />
+    <Compile Include="SendOrPostBag.cs" />
+    <Compile Include="SendOrPostBagGeneric.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="packages.config" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\SailorsPromises\SailorsPromises.csproj">
-      <Project>{15A98CEF-A85A-4F91-9D06-99ECDF7A2FDD}</Project>
-      <Name>SailorsPromises</Name>
-    </ProjectReference>
+    <None Include="SailorsPromises.snk" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
