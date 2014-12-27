@@ -28,9 +28,11 @@ Global
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
 		{9DE21F71-BEFA-4F08-997D-E0CD427F2B52}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9DE21F71-BEFA-4F08-997D-E0CD427F2B52}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{9DE21F71-BEFA-4F08-997D-E0CD427F2B52}.Publish2Nuget|Any CPU.ActiveCfg = Publish2Nuget|Any CPU
 		{9DE21F71-BEFA-4F08-997D-E0CD427F2B52}.Publish2Nuget|Any CPU.Build.0 = Publish2Nuget|Any CPU
 		{9DE21F71-BEFA-4F08-997D-E0CD427F2B52}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9DE21F71-BEFA-4F08-997D-E0CD427F2B52}.Release|Any CPU.Build.0 = Release|Any CPU
 		{15A98CEF-A85A-4F91-9D06-99ECDF7A2FDD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{15A98CEF-A85A-4F91-9D06-99ECDF7A2FDD}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{15A98CEF-A85A-4F91-9D06-99ECDF7A2FDD}.Publish2Nuget|Any CPU.ActiveCfg = Release|Any CPU
@@ -48,7 +50,6 @@ Global
 		{453A1B51-A0FF-43BB-AB9A-1E37B2997310}.Publish2Nuget|Any CPU.ActiveCfg = Release|Any CPU
 		{453A1B51-A0FF-43BB-AB9A-1E37B2997310}.Publish2Nuget|Any CPU.Build.0 = Release|Any CPU
 		{453A1B51-A0FF-43BB-AB9A-1E37B2997310}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{453A1B51-A0FF-43BB-AB9A-1E37B2997310}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
