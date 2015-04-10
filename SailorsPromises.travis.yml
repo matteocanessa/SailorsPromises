@@ -1,0 +1,8 @@
+language: csharp
+solution: SailorsPromises.sln
+install:
+  - nuget restore SailorsPromises.sln
+  - nuget install xunit.runners -Version 1.9.2 -OutputDirectory testrunner
+script:
+  - xbuild /p:Configuration=Release SailorsPromises.sln
+  - mono ./packages/xunit.runners.1.9.2/tools/xunit.console.exe
