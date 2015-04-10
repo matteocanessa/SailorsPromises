@@ -6,11 +6,11 @@ MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Misc", "Misc", "{09D55C7B-66F0-44A8-BEB9-319C7938721F}"
 	ProjectSection(SolutionItems) = preProject
 		.gitignore = .gitignore
+		.travis.yml = .travis.yml
 		License.txt = License.txt
 		README.md = README.md
 		SailorsPromises.png = SailorsPromises.png
 		SailorsPromises.snk = SailorsPromises.snk
-		SailorsPromises.travis.yml = SailorsPromises.travis.yml
 	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NugetPackager", "NugetPackager\NugetPackager.csproj", "{9DE21F71-BEFA-4F08-997D-E0CD427F2B52}"
