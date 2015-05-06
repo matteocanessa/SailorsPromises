@@ -1,5 +1,5 @@
 ﻿// <copyright file="IPromise.cs" company="https://github.com/matteocanessa/SailorsPromises">
-//     Copyright (c) 2014 Matteo Canessa (sailorspromises@gmail.com)
+//     Copyright (c) 2015 Matteo Canessa (sailorspromises@gmail.com)
 // </copyright>
 // <summary>Promise interface</summary>
 //
@@ -33,7 +33,7 @@ namespace SailorsPromises
     public delegate void Action();
 
     /// <summary>
-    /// Promise interface.
+	/// IPromise interface.
     /// </summary>
     public interface IPromise
     {

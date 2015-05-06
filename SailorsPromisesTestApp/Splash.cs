@@ -1,5 +1,5 @@
 ﻿// <copyright file="Splash.cs" company="https://github.com/matteocanessa/SailorsPromises">
-//     Copyright (c) 2014 Matteo Canessa (sailorspromises@gmail.com)
+//     Copyright (c) 2015 Matteo Canessa (sailorspromises@gmail.com)
 // </copyright>
 // <summary>Deferred object implementation</summary>
 //

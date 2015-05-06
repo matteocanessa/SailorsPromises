@@ -67,6 +67,7 @@
   <ItemGroup>
     <Compile Include="ATestsSuite.cs" />
     <Compile Include="Fake.cs" />
+    <Compile Include="AbortablePromiseMock.cs" />
     <Compile Include="PromiseMock.cs" />
     <Compile Include="PromiseTestsSuite.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

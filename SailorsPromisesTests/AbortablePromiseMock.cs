@@ -1,5 +1,5 @@
 ﻿//-----------------------------------------------------------------------
-// <copyright file="MySuperService.cs" company="https://github.com/matteocanessa/SailorsPromises">
+// <copyright file="PromiseMock.cs" company="https://github.com/matteocanessa/SailorsPromises">
 //     Copyright (c) 2015 Matteo Canessa (sailorspromises@gmail.com)
 // </copyright>
 // <summary></summary>
@@ -26,43 +26,37 @@
 // THE SOFTWARE.
 
 using System;
-using System.Threading;
 using SailorsPromises;
 
-namespace SailorsPromisesTestApp
+namespace SailorsPromisesTests
 {
     /// <summary>
-    /// Description of MySuperService.
+    /// PromiseMock.
     /// </summary>
-    public class MySuperService
+    internal class AbortablePromiseMock : AbortablePromise
     {
-        public MySuperService()
+        int fulfillCalls;
+        int rejectCalls;
+        
+        public int RejectCalls {
+            get { return rejectCalls; }
+        }
+        
+        public int FulfillCalls {
+            get { return fulfillCalls; }
+        }
+		public AbortablePromiseMock()
         {
         }
         
-        public IPromise Run()
+        internal override void Fulfill(object value)
         {
-            ISailor sailor = A.Sailor();
-            
-            new Thread(
-            delegate()
-            {
-                    try {
-                        while (true) {
-							//My long execution...    
-							Thread.Sleep(1000);
-							sailor.Notify("Something happened");
-                        }
-                    } catch (Exception exception) {
-                        
-                        sailor.Reject(exception);
-                    } finally {
-                        sailor.Finally();
-                    }
-            }
-            ).Start();
-            
-            return sailor.Promise;
+            this.fulfillCalls++;
+        }
+        
+        internal override void Reject(Exception exc)
+        {
+            this.rejectCalls++;
         }
     }
 }

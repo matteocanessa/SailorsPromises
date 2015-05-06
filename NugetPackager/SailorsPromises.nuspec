@@ -13,7 +13,7 @@
         <requireLicenseAcceptance>false</requireLicenseAcceptance>
         <description>Friendly asynchronous calls for all .Net versions, free and open-source library</description>
         <releaseNotes>https://github.com/matteocanessa/SailorsPromises/wiki/Release-Notes</releaseNotes>
-        <copyright>Copyright 2014</copyright>
+        <copyright>Copyright 2015</copyright>
         <tags>Async .Net Promises/A+ promises promise async-programming asynchronous callbacks C# Vb.Net 2.0 3.5 4.5</tags>
     </metadata>
     <files>

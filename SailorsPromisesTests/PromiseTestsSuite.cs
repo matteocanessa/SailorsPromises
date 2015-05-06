@@ -1,6 +1,6 @@
 ﻿//The MIT License (MIT)
 //
-//Copyright (c) 2014 Matteo Canessa (sailorspromises@gmail.com)
+//Copyright (c) 2015 Matteo Canessa (sailorspromises@gmail.com)
 //
 //Permission is hereby granted, free of charge, to any person obtaining a copy
 //of this software and associated documentation files (the "Software"), to deal
@@ -32,34 +32,138 @@ namespace SailorsPromisesTests
     /// </summary>
     public class PromiseTestsSuite
     {
+		[Fact]
+		public void Aborting_the_first_promise_should_set_the_aborted_state_only_on_the_first_promise_leaving_the_following_pending()
+		{
+			var s = A.Sailor();
+
+			var p1 = s.When((ct) =>
+			{
+				while (!ct.IsCancellationRequested)
+				{
+					Thread.Sleep(100);
+				}
+			});
+
+			var p2 = p1.Then((obj) => { });
+
+			var p3 = p2.Then((obj) => { });
+
+			p1.Abort();
+
+			Assert.True((p3 as AbortablePromise).PromiseState == PromiseState.Pending);
+			Assert.True((p2 as AbortablePromise).PromiseState == PromiseState.Pending);
+			Assert.True((p1 as AbortablePromise).PromiseState == PromiseState.Aborted);
+		}
+
+		[Fact]
+		public void Aborting_the_last_promise_should_set_the_aborted_state_on_all_preceding_pending_promises()
+		{
+			var s = A.Sailor();
+
+			var p1 = s.When((ct) =>
+			{
+				while (!ct.IsCancellationRequested)
+				{
+					Thread.Sleep(100);
+				}
+			});
+
+			var p2 = p1.Then((obj) => { });
+
+			var p3 = p2.Then((obj) => { });
+
+			p3.Abort();
+
+			Assert.True((p3 as AbortablePromise).PromiseState == PromiseState.Aborted);
+			Assert.True((p2 as AbortablePromise).PromiseState == PromiseState.Aborted);
+			Assert.True((p1 as AbortablePromise).PromiseState == PromiseState.Aborted);
+		}
         
         [Fact]
-        public void Value_get_should_throw_exception_if_state_is_not_fulfilled()
+        public void Value_get_should_throw_exception_if_state_is_pending()
         {
             //it is not allowed to get the value of a pending promise
-            
-            Exception ex = Assert.Throws<InvalidOperationException>(new Assert.ThrowsDelegate(Value_get_should_throw_exception_if_state_is_not_fulfilled_ThrowsDelegate));
+
+			Exception ex = Assert.Throws<InvalidOperationException>(new Assert.ThrowsDelegateWithReturn(() => { return A.Sailor().Promise.Value; }));
             
             Assert.NotNull(ex);
         }
-        private void Value_get_should_throw_exception_if_state_is_not_fulfilled_ThrowsDelegate()
-        {
-            object obj = A.Sailor().Promise.Value;
-        }
+
+		[Fact]
+		public void Value_get_should_throw_exception_if_state_is_aborted()
+		{
+			//it is not allowed to get the value of a pending promise
+
+			Exception ex = Assert.Throws<InvalidOperationException>(new Assert.ThrowsDelegate(() =>
+			{
+				var s = A.Sailor();
+				var p = s.When((ct) =>
+				{
+					while (!ct.IsCancellationRequested)
+					{
+						Thread.Sleep(1000);
+					}
+				});
+				p.Abort();
+				var v = p.Value;
+			}));
+
+			Assert.NotNull(ex);
+		}
+
+		[Fact]
+		public void Reason_get_should_throw_exception_if_state_is_aborted()
+		{
+			//it is not allowed to get the reason of a pending promise
+
+			Exception ex = Assert.Throws<InvalidOperationException>(
+				new Assert.ThrowsDelegate(
+					() =>
+					{
+						var s = A.Sailor();
+						var p = s.When((ct) =>
+						{
+							while (!ct.IsCancellationRequested)
+							{
+								Thread.Sleep(100);
+							}
+						});
+						p.Abort();
+						var r = p.Reason;
+					}
+					));
+
+			Assert.NotNull(ex);
+		}
+
+		[Fact]
+		public void Aborting_a_not_pending_promise_should_throw()
+		{
+			//it is not allowed to abort a not a pending promise
+
+			Exception ex = Assert.Throws<InvalidOperationException>(new Assert.ThrowsDelegate(
+					() =>
+					{
+						var s = A.Sailor();
+						var p = s.When((ct) => { });
+						Thread.Sleep(1000);
+						p.Abort();
+					}
+					));
+
+			Assert.NotNull(ex);
+		}
 
         
         [Fact]
-        public void Reason_get_should_throw_exception_if_state_is_not_fulfilled()
+        public void Reason_get_should_throw_exception_if_state_is_pending()
         {
             //it is not allowed to get the reason of a pending promise
-            
-            Exception ex = Assert.Throws<InvalidOperationException>(new Assert.ThrowsDelegate(Reason_get_should_throw_exception_if_state_is_not_fulfilled_ThrowsDelegate));
+
+			Exception ex = Assert.Throws<InvalidOperationException>(new Assert.ThrowsDelegateWithReturn(() => { return A.Sailor().Promise.Reason; }));
             
             Assert.NotNull(ex);
-        }
-        private void Reason_get_should_throw_exception_if_state_is_not_fulfilled_ThrowsDelegate()
-        {
-            object obj = A.Sailor().Promise.Reason;
         }
         
         [Fact]
@@ -87,23 +191,9 @@ namespace SailorsPromisesTests
             //a rejected promise reason should return the exception passed to the Sailor.Reject method
             Assert.Equal(exc, s.Promise.Reason);
         }
-
         
         [Fact]
-        public void Value_get_should_return_null_if_state_is_rejected()
-        {
-            ISailor s = A.Sailor();
-            IPromise promise = s.Promise;
-
-            s.Reject(new Exception());
-
-            //a rejected promise value should remain null
-            Assert.Null(s.Promise.Value);
-        }
-
-        
-        [Fact]
-        public void Reason_get_should_return_null_if_state_is_fulfilled()
+        public void Reason_get_should_return_throw_if_state_is_fulfilled()
         {
             ISailor s = A.Sailor();
             IPromise promise = s.Promise;
@@ -111,7 +201,9 @@ namespace SailorsPromisesTests
             s.Resolve(50);
 
             //a fulfilled promise value should remain null
-            Assert.Null(s.Promise.Reason);
+			var ex = Assert.Throws(typeof(InvalidOperationException), new Assert.ThrowsDelegateWithReturn(() => { return s.Promise.Reason; }));
+
+			Assert.NotNull(ex);
         }
 
         

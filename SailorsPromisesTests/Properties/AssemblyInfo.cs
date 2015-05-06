@@ -1,6 +1,6 @@
 ﻿//The MIT License (MIT)
 //
-//Copyright (c) 2014 Matteo Canessa (sailorspromises@gmail.com)
+//Copyright (c) 2015 Matteo Canessa (sailorspromises@gmail.com)
 //
 //Permission is hereby granted, free of charge, to any person obtaining a copy
 //of this software and associated documentation files (the "Software"), to deal
@@ -36,7 +36,7 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
 [assembly: AssemblyProduct("SailorsPromisesTests")]
-[assembly: AssemblyCopyright("Copyright 2014")]
+[assembly: AssemblyCopyright("Copyright 2015")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 

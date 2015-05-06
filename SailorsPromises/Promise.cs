@@ -1,5 +1,5 @@
 ﻿// <copyright file="Promise.cs" company="https://github.com/matteocanessa/SailorsPromises">
-//     Copyright (c) 2014 Matteo Canessa (sailorspromises@gmail.com)
+//     Copyright (c) 2015 Matteo Canessa (sailorspromises@gmail.com)
 // </copyright>
 // <summary>Promise implementation</summary>
 //
@@ -33,27 +33,30 @@ namespace SailorsPromises
     /// <summary>
     /// Internal class implementing the <code>IPromise</code> interface
     /// </summary>
-    internal class Promise : IPromise
+	internal class Promise : SyncHelper, IPromise
     {
         /// <remarks />
-        private List<Action<object>> onFulfilledCallbacks = new List<Action<object>>();
+        List<Action<object>> onFulfilledCallbacks = new List<Action<object>>();
         /// <remarks />
-        private List<Action<Exception>> onRejectedCallbacks = new List<Action<Exception>>();
+        List<Action<Exception>> onRejectedCallbacks = new List<Action<Exception>>();
         /// <remarks />
-        private List<Action<object>> onNotifyCallbacks = new List<Action<object>>();
+        List<Action<object>> onNotifyCallbacks = new List<Action<object>>();
         /// <remarks />
-        private List<Action> onFinalllyCallbacks = new List<Action>();
+        List<Action> onFinallyCallbacks = new List<Action>();
 
         /// <remarks />
-        private object value;
+        object value;
         /// <remarks />
-         private Exception reason;
+        Exception reason;
         /// <remarks />
-        private Promise followingPromise;
+        Promise followingPromise;
         /// <remarks />
-        private SynchronizationContext synchronizationContext;
-        /// <remarks />
-        private PromiseState promiseState = PromiseState.Pending;
+		PromiseState promiseState = PromiseState.Pending;
+
+		internal PromiseState PromiseState
+		{
+			get { return promiseState; }
+		}
 
         /// <remarks />
         internal Promise()
@@ -64,7 +67,7 @@ namespace SailorsPromises
         {
             get
             {
-                if (this.promiseState == PromiseState.Pending)
+                if (this.promiseState != PromiseState.Fulfilled)
                 {
                     throw new InvalidOperationException("Cannot get Value from a not fulfilled promise");
                 }
@@ -77,19 +80,13 @@ namespace SailorsPromises
         {
             get
             {
-                if (this.promiseState == PromiseState.Pending)
+                if (this.promiseState != PromiseState.Rejected)
                 {
                     throw new InvalidOperationException("Cannot get Reason from a not rejected promise");
                 }
                 
                 return this.reason;
             }
-        }
-
-        internal virtual SynchronizationContext SynchronizationContext
-        {
-            get { return this.synchronizationContext; }
-            set { this.synchronizationContext = value; }
         }
 
         public virtual IPromise Then(Action<object> onFulfilled)
@@ -108,7 +105,7 @@ namespace SailorsPromises
             return this.followingPromise;
         }
 
-        public virtual IPromise OnError(Action<Exception> onRejected)
+		public virtual IPromise OnError(Action<Exception> onRejected)
         {
             if (onRejected != null)
             {
@@ -128,7 +125,7 @@ namespace SailorsPromises
         {
             if (onFinally != null)
             {
-                this.onFinalllyCallbacks.Add(onFinally);
+                this.onFinallyCallbacks.Add(onFinally);
             }
 
             this.followingPromise = new Promise();
@@ -156,12 +153,12 @@ namespace SailorsPromises
             return this.followingPromise;
         }
 
-        [SuppressMessage("Microsoft.Design", "CA1031", Justification = "I need the exception to be generic to catch all types of exceptions")]
+		[SuppressMessage("Microsoft.Design", "CA1031", Justification = "I need the exception to be generic to catch all types of exceptions")]
         internal virtual void Finally()
         {
             Action<Action> action = (SynchronizationContext != null) ? (Action<Action>)this.InvokeCall : this.Call;
 
-            foreach (Action onFinalllyCallback in this.onFinalllyCallbacks)
+            foreach (Action onFinalllyCallback in this.onFinallyCallbacks)
             {
                 try
                 {
@@ -276,34 +273,5 @@ namespace SailorsPromises
                 this.followingPromise.Reject(reason);
             }
         }
-
-        delegate void ActionObjectDelegate(Action<object> callback, object value);
-        private void InvokeCall(Action<object> callback, object value)
-        {
-            SynchronizationContext.Send(new SendOrPostCallback(callback), value);
-        }
-
-        delegate void ActionExceptionDelegate(Action<Exception> callback, Exception reason);
-        private void InvokeCall(Action<Exception> callback, Exception reason)
-        {
-            SendOrPostBag<Exception> bag = new SendOrPostBag<Exception>(callback, reason);
-        	SynchronizationContext.Send(new SendOrPostCallback(bag.Execute), null);
-        }
-
-        private void Call<T>(Action<T> callback, T value)
-        {
-            callback(value);
-        }
-
-        private void InvokeCall(Action callback)
-        {
-            SendOrPostBag bag = new SendOrPostBag(callback);
-            SynchronizationContext.Send(new SendOrPostCallback(bag.Execute), null);
-        }
-
-        private void Call(Action callback)
-        {
-            callback();
-        }
-    }
+	}
 }

@@ -44,28 +44,10 @@
   <Settings />
  </Rules>
  <FxCopReport Version="10.0">
-  <Namespaces>
-   <Namespace Name="SailorsPromises">
-    <Messages>
-     <Message TypeName="AvoidNamespacesWithFewTypes" Category="Microsoft.Design" CheckId="CA1020" Created="2014-07-11 22:43:41Z">
-      <Issue>
-       <Item>SailorsPromises</Item>
-      </Issue>
-     </Message>
-    </Messages>
-   </Namespace>
-  </Namespaces>
   <Targets>
    <Target Name="$(ProjectDir)/SailorsPromises/bin/Debug/SailorsPromises.dll">
     <Modules>
      <Module Name="sailorspromises.dll">
-      <Messages>
-       <Message TypeName="MarkAssembliesWithClsCompliant" Category="Microsoft.Design" CheckId="CA1014" Created="2014-07-11 22:43:41Z">
-        <Issue>
-         <Item>'SailorsPromises.dll'</Item>
-        </Issue>
-       </Message>
-      </Messages>
       <Namespaces>
        <Namespace Name="SailorsPromises">
         <Types>
@@ -77,6 +59,101 @@
             </Issue>
            </Message>
           </Messages>
+         </Type>
+         <Type Name="AbortablePromise">
+          <Members>
+           <Member Name="#Finally()">
+            <Messages>
+             <Message TypeName="DoNotCatchGeneralExceptionTypes" Category="Microsoft.Design" CheckId="CA1031" Created="2015-05-06 22:09:57Z">
+              <Issue>
+               <Item>'AbortablePromise.Finally()'</Item>
+               <Item>'object'</Item>
+              </Issue>
+             </Message>
+            </Messages>
+           </Member>
+           <Member Name="#Fulfill(System.Object)">
+            <Messages>
+             <Message TypeName="DoNotCatchGeneralExceptionTypes" Category="Microsoft.Design" CheckId="CA1031" Created="2015-05-06 22:09:57Z">
+              <Issue>
+               <Item>'AbortablePromise.Fulfill(object)'</Item>
+               <Item>'Exception'</Item>
+              </Issue>
+             </Message>
+            </Messages>
+           </Member>
+           <Member Name="#Notify(System.Object)">
+            <Messages>
+             <Message TypeName="DoNotCatchGeneralExceptionTypes" Category="Microsoft.Design" CheckId="CA1031" Created="2015-05-06 22:09:57Z">
+              <Issue>
+               <Item>'AbortablePromise.Notify(object)'</Item>
+               <Item>'object'</Item>
+              </Issue>
+             </Message>
+            </Messages>
+           </Member>
+           <Member Name="#OnAbortRequested(System.Object,System.EventArgs)">
+            <Messages>
+             <Message TypeName="DoNotCatchGeneralExceptionTypes" Category="Microsoft.Design" CheckId="CA1031" Created="2015-05-06 22:09:57Z">
+              <Issue>
+               <Item>'AbortablePromise.OnAbortRequested(object, EventArgs)'</Item>
+               <Item>'object'</Item>
+              </Issue>
+             </Message>
+            </Messages>
+           </Member>
+           <Member Name="#Reject(System.Exception)">
+            <Messages>
+             <Message TypeName="DoNotCatchGeneralExceptionTypes" Category="Microsoft.Design" CheckId="CA1031" Created="2015-05-06 22:09:57Z">
+              <Issue>
+               <Item>'AbortablePromise.Reject(Exception)'</Item>
+               <Item>'object'</Item>
+              </Issue>
+             </Message>
+            </Messages>
+           </Member>
+          </Members>
+         </Type>
+         <Type Name="IAbortablePromise">
+          <Messages>
+           <Message Id="Abortable" TypeName="IdentifiersShouldBeSpelledCorrectly" Category="Microsoft.Naming" CheckId="CA1704" Created="2015-05-06 22:09:57Z">
+            <Issue Name="Type">
+             <Item>Abortable</Item>
+             <Item>'IAbortablePromise'</Item>
+            </Issue>
+           </Message>
+          </Messages>
+          <Members>
+           <Member Name="#Finally(SailorsPromises.Action)">
+            <Messages>
+             <Message Id="Finally" TypeName="IdentifiersShouldNotMatchKeywords" Category="Microsoft.Naming" CheckId="CA1716" Created="2015-05-06 22:09:57Z">
+              <Issue Name="Member">
+               <Item>'IAbortablePromise.Finally(Action)'</Item>
+               <Item>Finally</Item>
+              </Issue>
+             </Message>
+            </Messages>
+           </Member>
+           <Member Name="#OnAbort(SailorsPromises.Action)">
+            <Messages>
+             <Message Id="0#" TypeName="ParameterNamesShouldNotMatchMemberNames" Category="Microsoft.Naming" CheckId="CA1719" Created="2015-05-06 22:09:57Z">
+              <Issue>
+               <Item>'onAbort'</Item>
+              </Issue>
+             </Message>
+            </Messages>
+           </Member>
+           <Member Name="#Then(System.Action`1&lt;System.Object&gt;)">
+            <Messages>
+             <Message Id="Then" TypeName="IdentifiersShouldNotMatchKeywords" Category="Microsoft.Naming" CheckId="CA1716" Created="2015-05-06 22:09:57Z">
+              <Issue Name="Member">
+               <Item>'IAbortablePromise.Then(Action&lt;object&gt;)'</Item>
+               <Item>Then</Item>
+              </Issue>
+             </Message>
+            </Messages>
+           </Member>
+          </Members>
          </Type>
          <Type Name="IPromise">
           <Members>
@@ -119,6 +196,16 @@
              <Message Id="When" TypeName="IdentifiersShouldNotMatchKeywords" Category="Microsoft.Naming" CheckId="CA1716" Created="2014-07-11 22:43:41Z">
               <Issue Name="Member">
                <Item>'ISailor.When(Action)'</Item>
+               <Item>When</Item>
+              </Issue>
+             </Message>
+            </Messages>
+           </Member>
+           <Member Name="#When(System.Action`1&lt;SailorsPromises.CancellationToken&gt;)">
+            <Messages>
+             <Message Id="When" TypeName="IdentifiersShouldNotMatchKeywords" Category="Microsoft.Naming" CheckId="CA1716" Created="2015-05-06 22:09:57Z">
+              <Issue Name="Member">
+               <Item>'ISailor.When(Action&lt;CancellationToken&gt;)'</Item>
                <Item>When</Item>
               </Issue>
              </Message>
@@ -172,6 +259,16 @@
          </Type>
          <Type Name="Sailor">
           <Members>
+           <Member Name="#AbortableWorker(System.Object)">
+            <Messages>
+             <Message TypeName="DoNotCatchGeneralExceptionTypes" Category="Microsoft.Design" CheckId="CA1031" Created="2015-05-06 22:09:57Z">
+              <Issue>
+               <Item>'Sailor.AbortableWorker(object)'</Item>
+               <Item>'Exception'</Item>
+              </Issue>
+             </Message>
+            </Messages>
+           </Member>
            <Member Name="#Worker(System.Object)">
             <Messages>
              <Message TypeName="DoNotCatchGeneralExceptionTypes" Category="Microsoft.Design" CheckId="CA1031" Created="2014-07-11 22:43:41Z">
@@ -192,20 +289,18 @@
    </Target>
   </Targets>
   <Rules>
-   <Rule TypeName="AvoidNamespacesWithFewTypes" Category="Microsoft.Design" CheckId="CA1020">
-    <Resolution Name="Default">Consider merging the types defined in '{0}' with another namespace.</Resolution>
-   </Rule>
    <Rule TypeName="DoNotCatchGeneralExceptionTypes" Category="Microsoft.Design" CheckId="CA1031">
     <Resolution Name="Default">Modify {0} to catch a more specific exception than {1} or rethrow the exception.</Resolution>
    </Rule>
    <Rule TypeName="IdentifiersShouldBeSpelledCorrectly" Category="Microsoft.Naming" CheckId="CA1704">
+    <Resolution Name="Type">Correct the spelling of '{0}' in type name {1}.</Resolution>
     <Resolution Name="TypeMoreMeaningfulName">Consider providing a more meaningful name than type name {0}.</Resolution>
    </Rule>
    <Rule TypeName="IdentifiersShouldNotMatchKeywords" Category="Microsoft.Naming" CheckId="CA1716">
     <Resolution Name="Member">Rename virtual/interface member {0} so that it no longer conflicts with the reserved language keyword '{1}'. Using a reserved keyword as the name of a virtual/interface member makes it harder for consumers in other languages to override/implement the member.</Resolution>
    </Rule>
-   <Rule TypeName="MarkAssembliesWithClsCompliant" Category="Microsoft.Design" CheckId="CA1014">
-    <Resolution Name="Default">Mark {0} with CLSCompliant(true) because it exposes externally visible types.</Resolution>
+   <Rule TypeName="ParameterNamesShouldNotMatchMemberNames" Category="Microsoft.Naming" CheckId="CA1719">
+    <Resolution Name="Default">Change either member or parameter name {0} so that one differs from the other.</Resolution>
    </Rule>
   </Rules>
  </FxCopReport>

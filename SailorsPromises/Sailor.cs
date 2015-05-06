@@ -1,5 +1,5 @@
 ﻿// <copyright file="Sailor.cs" company="https://github.com/matteocanessa/SailorsPromises">
-//     Copyright (c) 2014 Matteo Canessa (sailorspromises@gmail.com)
+//     Copyright (c) 2015 Matteo Canessa (sailorspromises@gmail.com)
 // </copyright>
 // <summary>Deferred object implementation</summary>
 //
@@ -34,25 +34,35 @@ namespace SailorsPromises
     /// </summary>
     internal class Sailor : ISailor
     {
-        private Promise promise;
+        Promise promise;
+		AbortablePromise abortablePromise;
+		CancellationToken cancellationToken = new CancellationToken();
 
         /// <summary>
         /// Create a new instance of a Sailor
         /// </summary>
-        public Sailor() : this(new Promise())
+        public Sailor() : this(new Promise(), new AbortablePromise())
         {
         }
 
-        internal Sailor(Promise promise)
+		internal Sailor(Promise promise, AbortablePromise abortablePromise)
         {
             this.promise = promise;
+			this.abortablePromise = abortablePromise;
+			this.abortablePromise.AbortRequested += PromiseRequestedAbort;
             SynchronizationContext synchronizationContext = SynchronizationContext.Current;
 
             if (synchronizationContext != null)
             {
                 promise.SynchronizationContext = synchronizationContext;
+				this.abortablePromise.SynchronizationContext = synchronizationContext;
             }
         }
+
+		private void PromiseRequestedAbort(object sender, EventArgs e)
+		{
+			this.cancellationToken.IsCancellationRequested = true;
+		}
         
         /// <summary>
         /// Gets the <code>IPromise</code> object to manage the asynchronous operation.
@@ -69,6 +79,7 @@ namespace SailorsPromises
         public void Resolve(object value)
         {
             this.promise.Fulfill(value);
+			this.abortablePromise.Fulfill(value);
         }
 
         /// <summary>
@@ -78,6 +89,7 @@ namespace SailorsPromises
         public void Reject(Exception exception)
         {
             this.promise.Reject(exception);
+			this.abortablePromise.Reject(exception);
         }
 
         /// <summary>
@@ -87,6 +99,7 @@ namespace SailorsPromises
         public void Finally()
         {
             this.promise.Finally();
+			this.abortablePromise.Finally();
         }
 
         /// <summary>
@@ -96,6 +109,7 @@ namespace SailorsPromises
         public void Notify(object value)
         {
             this.promise.Notify(value);
+			this.abortablePromise.Notify(value);
         }
 
         /// <summary>
@@ -103,15 +117,15 @@ namespace SailorsPromises
         /// </summary>
         /// <param name="action">The action to be executed asynchronously on another thread.</param>
         /// <returns>The promise to interact with.</returns>
-        [SuppressMessage("Microsoft.Design", "CA1031", Justification = "I need the exception to be generic to catch all types of exceptions")]
         public IPromise When(Action action)
         {
             ThreadPool.QueueUserWorkItem(new WaitCallback(Worker), action);
 
             return this.Promise;
         }
-        
-        private void Worker(object state)
+
+		[SuppressMessage("Microsoft.Design", "CA1031", Justification = "I need the exception to be generic to catch all types of exceptions")]
+		void Worker(object state)
         {
             Action action = state as Action;
             try
@@ -128,5 +142,42 @@ namespace SailorsPromises
                 Finally();
             }
         }
+
+		/// <summary>
+		/// Executes the action asynchronously on another thread and the executes the standard promise pattern (then action if all is good, the OnError action if there are exceptions and so on).
+		/// Tha action takes a <see cref="CancellationToken"/> to give the chance to stop the working thread.
+		/// </summary>
+		/// <param name="action">The action to be executed asynchronously on another thread.</param>
+		/// <returns>The promise to interact with.</returns>
+		public IAbortablePromise When(Action<CancellationToken> action)
+		{
+			cancellationToken.IsCancellationRequested = false;
+			ThreadPool.QueueUserWorkItem(new WaitCallback(AbortableWorker), action);
+
+			return this.abortablePromise;
+		}
+
+		[SuppressMessage("Microsoft.Design", "CA1031", Justification = "I need the exception to be generic to catch all types of exceptions")]
+		void AbortableWorker(object state)
+		{
+			Action<CancellationToken> action = state as Action<CancellationToken>;
+			
+			try
+			{
+				action(this.cancellationToken);
+				if (!this.cancellationToken.IsCancellationRequested)
+				{
+					Resolve(null);
+				}
+			}
+			catch (Exception exc)
+			{
+				Reject(exc);
+			}
+			finally
+			{
+				Finally();
+			}
+		}
     }
 }

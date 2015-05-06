@@ -1,6 +1,6 @@
 ﻿//-----------------------------------------------------------------------
 // <copyright file="A.cs" company="https://github.com/matteocanessa/SailorsPromises">
-//     Copyright (c) 2014 Matteo Canessa (sailorspromises@gmail.com)
+//     Copyright (c) 2015 Matteo Canessa (sailorspromises@gmail.com)
 // </copyright>
 // <summary>Factory class for ISailor</summary>
 //-----------------------------------------------------------------------

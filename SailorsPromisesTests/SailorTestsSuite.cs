@@ -1,6 +1,6 @@
 ﻿//The MIT License (MIT)
 //
-//Copyright (c) 2014 Matteo Canessa (sailorspromises@gmail.com)
+//Copyright (c) 2015 Matteo Canessa (sailorspromises@gmail.com)
 //
 //Permission is hereby granted, free of charge, to any person obtaining a copy
 //of this software and associated documentation files (the "Software"), to deal
@@ -37,12 +37,14 @@ namespace SailorsPromisesTests
         {
             string val = "iyhbiyhb";
            
-            PromiseMock promiseMock = new PromiseMock();
+            var promiseMock = new PromiseMock();
+			var abortablePromiseMock = new AbortablePromiseMock();
 
-            Sailor d = new Sailor(promiseMock);
+			Sailor d = new Sailor(promiseMock, abortablePromiseMock);
             d.Resolve(val);
 
             Assert.Equal(1, promiseMock.FulfillCalls);
+			Assert.Equal(1, abortablePromiseMock.FulfillCalls);
         }
 
         [Fact]
@@ -50,12 +52,14 @@ namespace SailorsPromisesTests
         {
             Exception exc = new Exception();
 
-            PromiseMock promiseMock = new PromiseMock();
-            
-            Sailor d = new Sailor(promiseMock);
+            var promiseMock = new PromiseMock();
+			var abortablePromiseMock = new AbortablePromiseMock();
+
+			Sailor d = new Sailor(promiseMock, abortablePromiseMock);
             d.Reject(exc);
 
             Assert.Equal(1, promiseMock.RejectCalls);
+			Assert.Equal(1, abortablePromiseMock.RejectCalls);
         }
 
         [Fact]
@@ -84,6 +88,32 @@ namespace SailorsPromisesTests
             //Notify method should call promise notify exactly once
             Assert.Equal(1, call);
         }
+
+		[Fact]
+        public void Aborting_a_promise_should_set_the_cancellation_token_to_true()
+		{
+			ManualResetEvent mre = new ManualResetEvent(false);
+			bool cancelled = false;
+			var p = A.Sailor()
+				.When((ct) =>
+				{
+					while (!ct.IsCancellationRequested)
+					{
+						Thread.Sleep(100);
+					}
+					cancelled = true;
+					mre.Set();
+				}
+				);
+
+			var p1 = p.Then((obj) => { });
+
+			p.Abort();
+			mre.WaitOne();
+			Assert.True(cancelled);
+			Assert.True((p as AbortablePromise).PromiseState == PromiseState.Aborted);
+			Assert.True((p1 as AbortablePromise).PromiseState == PromiseState.Pending);
+		}
         
         [Fact]
         public void When_method_should_run_the_Action_and_all_others_methods_async_on_another_thread()

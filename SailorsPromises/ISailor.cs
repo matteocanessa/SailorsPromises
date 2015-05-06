@@ -1,5 +1,5 @@
 ﻿// <copyright file="ISailor.cs" company="https://github.com/matteocanessa/SailorsPromises">
-//     Copyright (c) 2014 Matteo Canessa (sailorspromises@gmail.com)
+//     Copyright (c) 2015 Matteo Canessa (sailorspromises@gmail.com)
 // </copyright>
 // <summary>Deferred object interface</summary>
 //
@@ -68,5 +68,13 @@ namespace SailorsPromises
         /// <param name="action">The action to be executed asynchronously on another thread.</param>
         /// <returns>The promise to interact with.</returns>
         IPromise When(Action action);
+
+		/// <summary>
+		/// Executes the action asynchronously on another thread and the executes the standard promise pattern (then action if all is good, the OnError action if there are exceptions and so on).
+		/// </summary>
+		/// <remarks>A cancellationToken is passed to check if the action should be cancelled</remarks>
+		/// <param name="action">The action to be executed asynchronously on another thread.</param>
+		/// <returns>The promise to interact with.</returns>
+		IAbortablePromise When(Action<CancellationToken> action);
     }
 }

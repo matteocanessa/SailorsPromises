@@ -60,6 +60,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="A.cs" />
+    <Compile Include="AbortablePromise.cs" />
+    <Compile Include="CancellationToken.cs" />
+    <Compile Include="IAbortablePromise.cs" />
     <Compile Include="IPromise.cs" />
     <Compile Include="ISailor.cs" />
     <Compile Include="Promise.cs" />
@@ -68,6 +71,7 @@
     <Compile Include="Sailor.cs" />
     <Compile Include="SendOrPostBag.cs" />
     <Compile Include="SendOrPostBagGeneric.cs" />
+    <Compile Include="SyncHelper.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="SailorsPromises.snk" />
