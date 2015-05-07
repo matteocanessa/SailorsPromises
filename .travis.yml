@@ -1,4 +1,6 @@
 language: csharp
+mono:
+  - 3.12.0
 solution: SailorsPromises.sln
 install:
   - nuget restore SailorsPromises.sln
